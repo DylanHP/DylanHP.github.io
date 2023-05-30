@@ -253,7 +253,7 @@ input, select, textarea {
 	}
 
 	blockquote {
-		border-left: solid 4px #ffffff;
+		border-left: solid 10px #ffffff;
 		font-style: italic;
 		margin: 0 0 2rem 0;
 		padding: 0.5rem 0 0.5rem 2rem;
@@ -261,7 +261,7 @@ input, select, textarea {
 
 	code {
 		background: rgba(255, 255, 255, 0.075);
-		border-radius: 4px;
+		border-radius: 10px;
 		font-family: "Courier New", monospace;
 		font-size: 0.9rem;
 		margin: 0 0.25rem;
@@ -400,7 +400,7 @@ input, select, textarea {
 		-ms-transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
 		transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
 		background-color: transparent;
-		border-radius: 4px;
+		border-radius: 10px;
 		border: solid 1px #ffffff;
 		color: inherit;
 		display: block;
@@ -516,7 +516,7 @@ input, select, textarea {
 				-webkit-transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
 				-ms-transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
 				transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
-				border-radius: 4px;
+				border-radius: 10px;
 				border: solid 1px #ffffff;
 				content: '';
 				display: inline-block;
@@ -545,7 +545,7 @@ input, select, textarea {
 		}
 
 	input[type="checkbox"] + label:before {
-		border-radius: 4px;
+		border-radius: 10px;
 	}
 
 	input[type="radio"] + label:before {
@@ -580,7 +580,7 @@ input, select, textarea {
 /* Box */
 
 	.box {
-		border-radius: 4px;
+		border-radius: 10px;
 		border: solid 1px #ffffff;
 		margin-bottom: 2rem;
 		padding: 1.5em;
@@ -601,18 +601,8 @@ input, select, textarea {
 /* Icon */
 
 	.icon {
-		width: 100px; /* Adjust the size as needed */
-		height: 100px; /* Adjust the size as needed */
-		border-radius: 50%;
 		overflow: hidden;
 		display: flex;
-		border: #ffffff;
-	}
-
-	.icon img{
-		width: 100%;
-  		height: 100%;
-  		object-fit: cover;
 	}
 
 		.icon:before {
@@ -635,7 +625,7 @@ input, select, textarea {
 /* Image */
 
 	.image {
-		border-radius: 4px;
+		border-radius: 10px;
 		border: 0;
 		display: inline-block;
 		position: relative;
@@ -645,7 +635,7 @@ input, select, textarea {
 			pointer-events: none;
 			background-image: url("../../images/overlay.png");
 			background-color: rgba(19, 21, 25, 0.5);
-			border-radius: 4px;
+			border-radius: 10px;
 			content: '';
 			display: block;
 			height: 100%;
@@ -657,7 +647,7 @@ input, select, textarea {
 		}
 
 		.image img {
-			border-radius: 4px;
+			border-radius: 10px;
 			display: block;
 		}
 
@@ -1009,7 +999,7 @@ input, select, textarea {
 		-ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 		transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 		background-color: transparent;
-		border-radius: 4px;
+		border-radius: 10px;
 		border: 0;
 		box-shadow: inset 0 0 0 1px #ffffff;
 		color: #ffffff !important;
@@ -1268,16 +1258,16 @@ input, select, textarea {
 			margin-top: 3.5rem;
 		}
 
-			#header > *:before {
-				content: '';
-				display: block;
-				position: absolute;
-				top: calc(-3.5rem - 1px);
-				left: calc(50% - 1px);
-				width: 1px;
-				height: calc(3.5rem + 1px);
-				background: #ffffff;
-			}
+		/* #header > *:before {
+			content: '';
+			display: block;
+			position: absolute;
+			top: calc(-3.5rem - 1px);
+			left: calc(50% - 1px);
+			width: 1px;
+			height: calc(3.5rem + 1px);
+			background: #ffffff;
+		} */
 
 		#header > :first-child {
 			margin-top: 0;
@@ -1288,9 +1278,9 @@ input, select, textarea {
 			}
 
 		#header .logo {
-			width: 5.5rem;
-			height: 5.5rem;
-			line-height: 5.5rem;
+			width: 6.5rem;
+			height: 6.5rem;
+			line-height: 6.5rem;
 			border: solid 1px #ffffff;
 			border-radius: 100%;
 		}
@@ -1341,7 +1331,7 @@ input, select, textarea {
 			list-style: none;
 			padding-left: 0;
 			border: solid 1px #ffffff;
-			border-radius: 4px;
+			border-radius: 10px;
 		}
 
 			#header nav ul li {
@@ -1544,7 +1534,7 @@ input, select, textarea {
 			width: 40rem;
 			max-width: 100%;
 			background-color: rgba(27, 31, 34, 0.85);
-			border-radius: 4px;
+			border-radius: 10px;
 			opacity: 0;
 		}
 
