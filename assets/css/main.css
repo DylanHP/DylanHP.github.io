@@ -394,7 +394,7 @@ input, select, textarea {
 		transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
 		background-color: transparent;
 		border-radius: 10px;
-		/* border: solid 1px #ffffff; */
+		border: solid 1px #ffffff;
 		color: inherit;
 		display: block;
 		outline: 0;
