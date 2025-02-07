@@ -198,7 +198,7 @@ body.is-preload *:after {
 /* Type */
 
 html {
-	font-size: 16pt;
+	font-size: 12pt;
 }
 
 @media screen and (max-width: 1680px) {
@@ -843,6 +843,10 @@ li.nav-buttons {
 	/* Evita che il testo vada su due righe */
 }
 
+p+ul {
+	margin-top: -1rem;
+}
+
 ul li {
 	padding-left: 0.5em;
 }
@@ -1309,7 +1313,7 @@ body.is-preload #bg:before {
 	position: relative;
 	min-height: 100vh;
 	width: 100%;
-	padding: 4rem 2rem;
+	padding: 1rem 1rem;
 	z-index: 3;
 }
 
@@ -1375,7 +1379,7 @@ body.is-preload #bg:before {
 	-ms-transition: opacity 0.325s ease-in-out;
 	transition: opacity 0.325s ease-in-out;
 	position: relative;
-	margin-top: 3.5rem;
+	margin-top: 2rem;
 }
 
 #header>*:before {
@@ -1403,7 +1407,7 @@ body.is-preload #bg:before {
 	width: 15.5rem;
 	height: 15.5rem;
 	/* border: solid 1px #ffffff; */
-	border-radius: 100%;
+	border-radius: 50%;
 }
 
 #header .logo .icon:before {
@@ -1493,7 +1497,7 @@ body.is-preload #bg:before {
 	content: '';
 	display: block;
 	position: absolute;
-	top: 0;
+	top: -1rem;
 	left: calc(50% - 1px);
 	width: 1px;
 	height: 100%;
