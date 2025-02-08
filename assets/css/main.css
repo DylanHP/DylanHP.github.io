@@ -684,6 +684,41 @@ input[type="radio"]+label:before {
 	opacity: 1.0;
 }
 
+.wrapper {
+	cursor: none !important;
+}
+
+.close,
+.send,
+.reset,
+.icon,
+.nav-buttons {
+	cursor: none !important;
+}
+
+article,
+.content {
+	cursor: default !important;
+}
+
+/* Follower */
+.follower {
+	width: 80px;
+	height: 80px;
+	background-image: url('../../images/follower.gif');
+	position: absolute;
+	background-size: cover;
+	pointer-events: none;
+	top: 0;
+	left: 0;
+	z-index: 4;
+}
+
+.follower.hidden {
+	display: none;
+}
+
+
 /* Box */
 
 .box {
