@@ -692,7 +692,11 @@ input[type="radio"]+label:before {
 .no-touch .send,
 .no-touch .reset,
 .no-touch .icon,
-.no-touch .nav-buttons {
+.no-touch .nav-buttons,
+.no-touch .aboutme,
+.no-touch .projects,
+.no-touch .passions,
+.no-touch .contacts {
 	cursor: none !important;
 }
 
@@ -713,6 +717,7 @@ input[type="radio"]+label:before {
 	left: 0;
 	z-index: 4;
 }
+
 
 .no-touch .follower.hidden {
 	display: none;
@@ -873,7 +878,7 @@ li.nav-buttons {
 	flex-direction: row;
 	border-radius: 10px;
 	margin: 5px;
-	background-color: rgba(255, 255, 255, 0.075);
+	background-color: rgba(255, 255, 255, 0.15);
 	white-space: nowrap;
 	/* Evita che il testo vada su due righe */
 }
@@ -1406,6 +1411,8 @@ body.is-preload #bg:before {
 	background-image: radial-gradient(rgba(0, 0, 0, 0.25) 25%, rgba(0, 0, 0, 0) 55%);
 	max-width: 100%;
 	text-align: center;
+	justify-content: center;
+	flex: 1;
 }
 
 #header>* {
@@ -1441,7 +1448,6 @@ body.is-preload #bg:before {
 	display: flex;
 	width: 15.5rem;
 	height: 15.5rem;
-	/* border: solid 1px #ffffff; */
 	border-radius: 50%;
 }
 
@@ -1491,13 +1497,11 @@ body.is-preload #bg:before {
 	margin-bottom: 0;
 	list-style: none;
 	padding-left: 0;
-	/* border: solid 1px #ffffff; */
 	border-radius: 10px;
 }
 
 #header nav ul li {
 	padding-left: 0;
-	/* border-left: solid 1px #ffffff; */
 }
 
 #header nav ul li:first-child {
@@ -1794,7 +1798,7 @@ body.is-preload #header .content .inner {
 	transition: transform 0.325s ease-in-out, filter 0.325s ease-in-out, opacity 0.325s ease-in-out;
 	width: 100%;
 	max-width: 100%;
-	margin-top: 2rem;
+	margin-top: auto;
 	text-align: center;
 }
 

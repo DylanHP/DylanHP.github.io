@@ -8,9 +8,12 @@ if (!('ontouchstart' in window || navigator.maxTouchPoints)) {
     const content = document.querySelector('.content');
     document.body.style.cursor = 'none';
 
+
     document.body.onpointermove = ({ clientX, clientY }) => {
-        follower.style.left = `${clientX - 35}px`;
-        follower.style.top = `${clientY - 35}px`;
+        const scrollX = window.scrollX || window.pageXOffset;
+        const scrollY = window.scrollY || window.pageYOffset;
+        follower.style.left = `${clientX + scrollX - 35}px`;
+        follower.style.top = `${clientY + scrollY - 35}px`;
     };
 
     const elements = [
@@ -44,14 +47,14 @@ if (!('ontouchstart' in window || navigator.maxTouchPoints)) {
 
     document.querySelectorAll('article').forEach(article => {
         article.addEventListener('mouseover', event => {
-            if (!event.target.closest('.close, .icon, .send, .reset, .nav-buttons')) toggleFollower(false);
+            if (!event.target.closest('.close, .icon, .send, .reset')) toggleFollower(false);
         });
         article.addEventListener('mouseout', event => {
-            if (!event.target.closest('.close, .icon, .send, .reset, .nav-buttons')) toggleFollower(true);
+            if (!event.target.closest('.close, .icon, .send, .reset')) toggleFollower(true);
         });
     });
 
-    document.querySelectorAll('.close, .icon, .send, .reset, .nav-buttons').forEach(element => {
+    document.querySelectorAll('.close, .icon, .send, .reset').forEach(element => {
         element.addEventListener('mouseover', () => toggleFollower(true));
         element.addEventListener('mouseout', () => toggleFollower(false));
     });
@@ -63,63 +66,3 @@ if (!('ontouchstart' in window || navigator.maxTouchPoints)) {
 else {
     console.log("touch");
 }
-
-let lastPositions = [], shakeCount = 0, firstShakeTime = null;
-const shakeThreshold = 500, timeLimit = 1000, requiredShakes = 15;
-
-document.addEventListener("mousemove", ({ clientX, clientY }) => {
-    const now = Date.now();
-    lastPositions = lastPositions.filter(pos => now - pos.time <= timeLimit);
-    lastPositions.push({ x: clientX, y: clientY, time: now });
-
-    let totalDistance = lastPositions.reduce((dist, pos, i, arr) => {
-        if (i === 0) return dist;
-        const dx = pos.x - arr[i - 1].x, dy = pos.y - arr[i - 1].y;
-        return dist + Math.sqrt(dx * dx + dy * dy);
-    }, 0);
-
-    if (totalDistance > shakeThreshold) {
-        if (shakeCount === 0) firstShakeTime = now;
-        shakeCount++;
-        lastPositions = [];
-
-        if (shakeCount >= requiredShakes && (now - firstShakeTime) <= timeLimit) {
-            const newWindow = window.open(
-                'https://www.youtube.com/watch?v=dQw4w9WgXcQ&autoplay=1&vq=hd1080&fs=1&modestbranding=1&rel=0&showinfo=0',
-                '_blank', 'width=800,height=600'
-            );
-            if (newWindow) {
-                newWindow.focus();
-                newWindow.moveTo(0, 0);
-                newWindow.resizeTo(screen.width, screen.height);
-            }
-        }
-
-        if ((now - firstShakeTime) > timeLimit) {
-            shakeCount = 1;
-            firstShakeTime = now;
-        }
-    }
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-    let clickCount = 0;
-    const logo = document.querySelector('.logo');
-    if (logo) {
-        logo.addEventListener('click', () => {
-            clickCount++;
-            if (clickCount === 7) {
-                const newWindow = window.open(
-                    'https://www.youtube.com/watch?v=dQw4w9WgXcQ&autoplay=1&vq=hd1080&fs=1&modestbranding=1&rel=0&showinfo=0',
-                    '_blank', 'width=800,height=600'
-                );
-                if (newWindow) {
-                    newWindow.focus();
-                    newWindow.moveTo(0, 0);
-                    newWindow.resizeTo(screen.width, screen.height);
-                }
-                clickCount = 0;
-            }
-        });
-    }
-});
