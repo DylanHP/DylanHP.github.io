@@ -1,6 +1,20 @@
 let lastPositions = [], shakeCount = 0, firstShakeTime = null;
 const shakeThreshold = 500, timeLimit = 1000, requiredShakes = 15;
 
+function openrickroll() {
+    const newWindow = window.open(
+        'https://www.youtube.com/watch?v=dQw4w9WgXcQ&autoplay=1&vq=hd1080&fs=1&modestbranding=1&rel=0&showinfo=0',
+        '_blank', 'width=800,height=600'
+    );
+    if (newWindow) {
+        newWindow.focus();
+        newWindow.moveTo(0, 0);
+        newWindow.resizeTo(screen.width, screen.height);
+    }
+    window.location.hash = "rickrolled";
+}
+
+
 document.addEventListener("mousemove", ({ clientX, clientY }) => {
     const now = Date.now();
     lastPositions = lastPositions.filter(pos => now - pos.time <= timeLimit);
@@ -18,15 +32,7 @@ document.addEventListener("mousemove", ({ clientX, clientY }) => {
         lastPositions = [];
 
         if (shakeCount >= requiredShakes && (now - firstShakeTime) <= timeLimit) {
-            const newWindow = window.open(
-                'https://www.youtube.com/watch?v=dQw4w9WgXcQ&autoplay=1&vq=hd1080&fs=1&modestbranding=1&rel=0&showinfo=0',
-                '_blank', 'width=800,height=600'
-            );
-            if (newWindow) {
-                newWindow.focus();
-                newWindow.moveTo(0, 0);
-                newWindow.resizeTo(screen.width, screen.height);
-            }
+            openrickroll();
         }
 
         if ((now - firstShakeTime) > timeLimit) {
@@ -43,15 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         logo.addEventListener('click', () => {
             clickCount++;
             if (clickCount === 7) {
-                const newWindow = window.open(
-                    'https://www.youtube.com/watch?v=dQw4w9WgXcQ&autoplay=1&vq=hd1080&fs=1&modestbranding=1&rel=0&showinfo=0',
-                    '_blank', 'width=800,height=600'
-                );
-                if (newWindow) {
-                    newWindow.focus();
-                    newWindow.moveTo(0, 0);
-                    newWindow.resizeTo(screen.width, screen.height);
-                }
+                openrickroll();
                 clickCount = 0;
             }
         });
