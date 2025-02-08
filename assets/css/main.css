@@ -684,25 +684,25 @@ input[type="radio"]+label:before {
 	opacity: 1.0;
 }
 
-.wrapper {
+.no-touch .wrapper {
 	cursor: none !important;
 }
 
-.close,
-.send,
-.reset,
-.icon,
-.nav-buttons {
+.no-touch .close,
+.no-touch .send,
+.no-touch .reset,
+.no-touch .icon,
+.no-touch .nav-buttons {
 	cursor: none !important;
 }
 
-article,
-.content {
+.no-touch article,
+.no-touch .content {
 	cursor: default !important;
 }
 
 /* Follower */
-.follower {
+.no-touch .follower {
 	width: 80px;
 	height: 80px;
 	background-image: url('../../images/follower.gif');
@@ -714,7 +714,7 @@ article,
 	z-index: 4;
 }
 
-.follower.hidden {
+.no-touch .follower.hidden {
 	display: none;
 }
 

@@ -1,65 +1,68 @@
-document.documentElement.style.cursor = 'none';
-const follower = document.querySelector('.follower');
-const content = document.querySelector('.content');
-document.body.style.cursor = 'none';
+//se non hol il touch allora attivo il follower
+if (!('ontouchstart' in window || navigator.maxTouchPoints)) {
+    document.body.classList.add('no-touch');
+    console.log("no touch");
 
-document.body.onpointermove = ({ clientX, clientY }) => {
-    follower.style.left = `${clientX - 35}px`;
-    follower.style.top = `${clientY - 35}px`;
-};
+    document.documentElement.style.cursor = 'none';
+    const follower = document.querySelector('.follower');
+    const content = document.querySelector('.content');
+    document.body.style.cursor = 'none';
 
-const elements = [
-    { selector: '.passions', image: 'passions-follower.gif' },
-    { selector: '.aboutme', image: 'me-follower.gif' },
-    { selector: '.projects', image: 'projects-follower.gif' },
-    { selector: '.icon', image: 'icons-follower.gif' },
-    { selector: '.reset', image: 'reset-follower.gif' },
-    { selector: '.send', image: 'send-follower.gif' },
-    { selector: '.contacts', image: 'contact-follower.gif' },
-    { selector: '.logo', image: 'rick-follower.gif' },
-    { selector: '.close', image: 'close-follower.gif' }
-];
+    document.body.onpointermove = ({ clientX, clientY }) => {
+        follower.style.left = `${clientX - 35}px`;
+        follower.style.top = `${clientY - 35}px`;
+    };
 
-elements.forEach(({ selector, image }) => {
-    document.querySelectorAll(selector).forEach(element => {
-        element.addEventListener('mouseover', () => {
-            follower.style.backgroundImage = `url('../../images/${image}')`;
-            follower.classList.remove('hidden');
+    const elements = [
+        { selector: '.passions', image: 'passions-follower.gif' },
+        { selector: '.aboutme', image: 'me-follower.gif' },
+        { selector: '.projects', image: 'projects-follower.gif' },
+        { selector: '.icon', image: 'icons-follower.gif' },
+        { selector: '.reset', image: 'reset-follower.gif' },
+        { selector: '.send', image: 'send-follower.gif' },
+        { selector: '.contacts', image: 'contact-follower.gif' },
+        { selector: '.logo', image: 'rick-follower.gif' },
+        { selector: '.close', image: 'close-follower.gif' }
+    ];
+
+    elements.forEach(({ selector, image }) => {
+        document.querySelectorAll(selector).forEach(element => {
+            element.addEventListener('mouseover', () => {
+                follower.style.backgroundImage = `url('../../images/${image}')`;
+                follower.classList.remove('hidden');
+            });
+            element.addEventListener('mouseout', () => {
+                follower.style.backgroundImage = "url('../../images/follower.gif')";
+            });
         });
-        element.addEventListener('mouseout', () => {
-            follower.style.backgroundImage = "url('../../images/follower.gif')";
+    });
+
+    const toggleFollower = (show) => {
+        follower.classList.toggle('hidden', !show);
+        document.body.style.cursor = show ? 'none' : 'default';
+    };
+
+    document.querySelectorAll('article').forEach(article => {
+        article.addEventListener('mouseover', event => {
+            if (!event.target.closest('.close, .icon, .send, .reset, .nav-buttons')) toggleFollower(false);
+        });
+        article.addEventListener('mouseout', event => {
+            if (!event.target.closest('.close, .icon, .send, .reset, .nav-buttons')) toggleFollower(true);
         });
     });
-});
 
-const toggleFollower = (show) => {
-    follower.classList.toggle('hidden', !show);
-    document.body.style.cursor = show ? 'none' : 'default';
-};
-
-document.querySelectorAll('article').forEach(article => {
-    article.addEventListener('mouseover', event => {
-        if (!event.target.closest('.close, .icon, .send, .reset, .nav-buttons')) toggleFollower(false);
+    document.querySelectorAll('.close, .icon, .send, .reset, .nav-buttons').forEach(element => {
+        element.addEventListener('mouseover', () => toggleFollower(true));
+        element.addEventListener('mouseout', () => toggleFollower(false));
     });
-    article.addEventListener('mouseout', event => {
-        if (!event.target.closest('.close, .icon, .send, .reset, .nav-buttons')) toggleFollower(true);
-    });
-});
 
-document.querySelectorAll('.close, .icon, .send, .reset, .nav-buttons').forEach(element => {
-    element.addEventListener('mouseover', () => toggleFollower(true));
-    element.addEventListener('mouseout', () => toggleFollower(false));
-});
-
-content.addEventListener('mouseover', () => toggleFollower(false));
-content.addEventListener('mouseout', () => toggleFollower(true));
-
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('article, .content').forEach(element => {
-        element.addEventListener('mouseover', () => toggleFollower(false));
-        element.addEventListener('mouseout', () => toggleFollower(true));
-    });
-});
+    content.addEventListener('mouseover', () => toggleFollower(false));
+    content.addEventListener('mouseout', () => toggleFollower(true));
+}
+//altrimenti non faccio niente
+else {
+    console.log("touch");
+}
 
 let lastPositions = [], shakeCount = 0, firstShakeTime = null;
 const shakeThreshold = 500, timeLimit = 1000, requiredShakes = 15;
