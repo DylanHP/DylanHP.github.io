@@ -46,21 +46,82 @@ if (!('ontouchstart' in window || navigator.maxTouchPoints)) {
     };
 
     document.querySelectorAll('article').forEach(article => {
+        // Nacondo follower quando il mouse è sopra l'articolo
         article.addEventListener('mouseover', event => {
             if (!event.target.closest('.close, .icon, .send, .reset')) toggleFollower(false);
         });
+        // Mostro follower quando il mouse esce dall'articolo
         article.addEventListener('mouseout', event => {
             if (!event.target.closest('.close, .icon, .send, .reset')) toggleFollower(true);
         });
     });
+
+    function addClippyListeners(clippy) {
+        clippy.addEventListener('mouseover', () => toggleFollower(false));
+        clippy.addEventListener('mouseout', () => toggleFollower(true));
+    }
+
+    // Gestione per .clippy
+    let clippy = document.querySelector('.clippy');
+    if (clippy) {
+        addClippyListeners(clippy);
+    } else {
+        const observer = new MutationObserver(() => {
+            clippy = document.querySelector('.clippy');
+            if (clippy) {
+                addClippyListeners(clippy);
+                observer.disconnect();
+            }
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+    }
+
+    // Gestione per .clippy-balloon
+    let clippyBalloon = document.querySelector('.clippy-balloon');
+    if (clippyBalloon) {
+        addClippyListeners(clippyBalloon);
+    } else {
+        const observerBalloon = new MutationObserver(() => {
+            clippyBalloon = document.querySelector('.clippy-balloon');
+            if (clippyBalloon) {
+                addClippyListeners(clippyBalloon);
+                observerBalloon.disconnect();
+            }
+        });
+        observerBalloon.observe(document.body, { childList: true, subtree: true });
+    }
 
     document.querySelectorAll('.close, .icon, .send, .reset').forEach(element => {
         element.addEventListener('mouseover', () => toggleFollower(true));
         element.addEventListener('mouseout', () => toggleFollower(false));
     });
 
+
     content.addEventListener('mouseover', () => toggleFollower(false));
     content.addEventListener('mouseout', () => toggleFollower(true));
+
+    // Gestione per evitare di andare fuori dai bordi
+    document.body.onpointermove = ({ clientX, clientY }) => {
+        const scrollX = window.scrollX || window.pageXOffset;
+        const scrollY = window.scrollY || window.pageYOffset;
+        const followerRect = follower.getBoundingClientRect();
+        const followerWidth = followerRect.width || 70;
+        const followerHeight = followerRect.height || 70;
+    
+        // Usa l'area visibile effettiva per i limiti
+        const maxLeft = document.documentElement.clientWidth + scrollX - followerWidth;
+        const maxTop = document.documentElement.clientHeight + scrollY - followerHeight;
+    
+        // Centra il follower sul cursore, ma limita ai bordi
+        let left = clientX + scrollX - followerWidth / 2;
+        let top = clientY + scrollY - followerHeight / 2;
+    
+        left = Math.max(scrollX, Math.min(left, maxLeft));
+        top = Math.max(scrollY, Math.min(top, maxTop));
+    
+        follower.style.left = `${left}px`;
+        follower.style.top = `${top}px`;
+    };
 }
 //altrimenti non faccio niente
 else {
