@@ -1,16 +1,7 @@
-// Scegli un agente casuale tra quelli disponibili, escludendo l'ultimo visualizzato
-const agents = ['Bonzi', 'Clippy', 'F1', 'Genie', 'Merlin', 'Peedy', 'Rover'];
-const lastAgent = localStorage.getItem('lastClippyAgent');
-const availableAgents = lastAgent ? agents.filter(a => a !== lastAgent) : agents;
-const randomAgent = availableAgents[Math.floor(Math.random() * availableAgents.length)];
-
-// Salva l'agente scelto per il prossimo caricamento
-localStorage.setItem('lastClippyAgent', randomAgent);
-
-// Inizializzazione di Clippy (o altro agente)
-clippy.load(randomAgent, function(agent) {
+// Carica solo Clippy come agente
+clippy.load('Clippy', function(agent) {
     agent.show();
-    agent.speak(`Hi! I'm ${randomAgent}! I am here to annoy you.`);
+    agent.speak("Hi! I'm Clippy! I am here to annoy you.");
     agent.play('Greet');
     
     // Interazione con il bottone About Me
