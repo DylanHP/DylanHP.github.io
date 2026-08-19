@@ -1,0 +1,285 @@
+<!DOCTYPE HTML>
+<!--
+	Dimension by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+	Css and Index modifided by Dylan Zanaglio
+	-->
+<html>
+
+<head>
+	<title>Dylan Portfolio</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<!-- Clippyjs -->
+	<link rel="stylesheet" type="text/css" href="clippy.js/build/clippy.css" media="all">
+	<!-- Google Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+	<!-- My css -->
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<link rel="icon" href="images/me_rounded.png" type="image/png">
+	<noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
+</head>
+
+<body class="is-preload">
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<div class="logo">
+				<!-- change the icon -->
+				<img class="rick" src="images/me.jpg">
+			</div>
+			<div class="content">
+				<div class="inner">
+					<h1>My portfolio</h1>
+					<p>Hello My name is dylan and <br>This is a simple website to showcase my projects, passions and
+						projects.<br />
+					</p>
+				</div>
+			</div>
+			<nav>
+				<ul>
+					<li class="nav-buttons "><a class="aboutme" href="#aboutme">About ⁠Me</a></li>
+					<li class="nav-buttons "><a class="projects" href="#projects">Projects</a></li>
+					<li class="nav-buttons "><a class="passions" href="#passions">Passions</a></li>
+					<li class="nav-buttons "><a class="contacts" href="#contacts">Contacts</a></li>
+					<!--<li><a href="#elements">Elements</a></li>-->
+				</ul>
+			</nav>
+		</header>
+
+		<!-- Main -->
+		<div id="main">
+
+			<!-- Intro -->
+			<article id="aboutme">
+				<h2 class="major">About me</h2>
+				<span class="image main"><img src="images/about.jpg" alt="" /></span>
+				<p>Hi, I'm Dylan Zanaglio, an <b>Electronic Engineering student</b> at <b>UNIBS</b> (University of
+					Brescia) with a
+					deep passion for <b>electronics</b>, <b>embedded systems</b>, <b>innovation</b>, and
+					<b>Motorsport</b>.
+				</p>
+				<p>I am always eager to explore new technologies, electronic design methodologies, and programming
+					techniques. My studies and hands-on experience have allowed me to work on <b>hardware projects</b>,
+					develop
+					<b>embedded firmware</b>, and design <b>circuits</b>. I thrive on tackling challenges and pushing
+					the boundaries
+					of technology. As the <b>Eletronic division leader</b> at <b><a
+							href="https://www.unibsmotostudent.it/" target="_blank">GIVI UniBS MotoStudent Team</a></b>,
+					I have
+					the opportunity to develop and test innovative ideas in a dynamic environment.
+				</p>
+				<p>During my studies, I developed a strong interest in <b>competitive programming</b> and
+					<b>problem-solving</b>,
+					which led me to participate in the <b>IEEXtreme competition</b>—an intense global coding challenge.
+					This
+					experience enhanced my skills in <b>algorithm development</b>, <b>efficiency optimization</b>, and
+					<b>teamwork</b>.
+				</p>
+				<p>Professionally, I have worked on developing <b>embedded boards</b> and <b>user interfaces</b> for
+					<b>HVAC heat
+						recovery devices</b>, gaining hands-on experience with <b>microcontrollers</b>, <b>PCB
+						design</b>, and
+					<b>firmware
+						development</b> in an industrial setting.
+				</p>
+				<p>If you share similar interests or want to discuss exciting tech ideas, feel free to connect with me!
+					🚀</p>
+			</article>
+
+			<!-- projects -->
+			<article id="projects">
+				<h2 class="major">Projects</h2>
+				<span class="image main"><img src="images/projects1.jpg" alt="" /></span>
+				<h3 class="major">Personal Projects</h3>
+
+				<h4>Electric Scooter Conversion</h4>
+				<p>I'm upgrading an electric scooter by replacing its original lead-acid batteries and 250W motor with a
+					more powerful and efficient system. The new setup features a <b>48V 18650 lithium battery pack</b>
+					and a <b>2kW three-phase asynchronous motor</b>, significantly improving performance and range.</p>
+
+				<h4>Homelab Development</h4>
+				<p>My homelab is built around a <b>Ryzen 5 5600G</b> with <b>16GB RAM @ 3200MHz</b>, a <b>Coral TPU</b>,
+					and <b>6TB raw storage (3TB RAIDZ1)</b>. It hosts multiple services, including:</p>
+				<ul>
+					<li><b>Home Assistant</b> (smart home automation)</li>
+					<li><b>Frigate</b> (AI-powered security camera system)</li>
+					<li><b>Omada Controller</b> (network management)</li>
+					<li><b>Immich</b> (self-hosted photo management)</li>
+					<li><b>Nextcloud</b> (private cloud storage)</li>
+					<li>And more...</li>
+				</ul>
+
+				<span class="image main"><img src="images/projects2.jpg" alt="" /></span>
+				<h3 class="major">University Projects</h3>
+
+				<h4>Givi MotoStudent Team</h4>
+				<p>As part of the electronic team in the Givi MotoStudent project at UniBS, I contribute to modernizing
+					the motorcycle's sensor data acquisition system. Our goals include:</p>
+				<ul>
+					<li>Developing custom sensor aggregator boards in-house</li>
+					<li>Using a <b>Raspberry Pi 5</b> as the main controller with a touchscreen interface for the rider
+					</li>
+					<li>Integrating additional data sources like a weather station and a heart rate sensor</li>
+				</ul>
+
+				<h4>CyberChallenge.IT</h4>
+				<p>I recently joined the <b>CyberChallenge.IT</b>, a national CTF-style cybersecurity competition. I'm
+					currently getting familiar with the competition format and challenges.</p>
+
+				<h4>IEEExtreme 2021</h4>
+				<p>In 2021, I participated in <b>IEEExtreme</b>, a global programming competition that tests
+					problem-solving skills across various topics.</p>
+			</article>
+
+			<!-- Passions -->
+			<article id="passions">
+				<h2 class="major">Passions</h2>
+				<span class="image main"><img src="images/passions.jpg" alt="" /></span>
+				<h3>Photography📷</h3>
+				<p>For me, photography is more than just taking pictures—it's about capturing emotions, stories, and the
+					thrill of a moment. Whether I'm out in nature shooting landscapes or trying to freeze the raw speed
+					of a motorsport event, I love the challenge of finding the perfect angle, the right lighting, and
+					the best composition. It’s my way of seeing the world differently and sharing my perspective with
+					others.</p>
+
+				<h3>Electronics Projects📟</h3>
+				<p>Ever since I was a kid, I’ve been fascinated by how things work. Tinkering with electronics lets me
+					turn ideas into reality, whether it’s building circuits, working with microcontrollers, or
+					automating tasks. I love the process of problem-solving, debugging, and eventually watching a
+					project come to life. It’s that mix of creativity and technical skill that keeps me hooked.</p>
+
+				<h3>Homelabs🌐</h3>
+				<p>There's something deeply satisfying about designing and optimizing my own homelab. From setting up
+					virtual machines to fine-tuning network configurations, I enjoy pushing the limits of what I can
+					build at home. It’s not just about having a personal server—it's about experimenting, learning, and
+					constantly improving my setup to make everything more efficient and secure.</p>
+
+				<section>
+					<h3>Sports🏃🏻</h3>
+					<p>I’ve always been drawn to sports that challenge both the body and mind. They push my limits, fuel
+						my competitive side, and give me an escape from the daily routine.</p>
+					<ol>
+						<li>
+							<h4>Mountain Biking🚴🏻‍♂️</h4>
+							<p>There's no better feeling than flying down a trail, navigating technical descents, and
+								pushing myself on the climbs. It’s a sport that demands focus, skill, and endurance, and
+								I love every second of it.</p>
+						</li>
+						<li>
+							<h4>Motorsport🏎️</h4>
+							<p>The combination of speed, precision, and engineering fascinates me. Whether I’m watching
+								a race, learning about vehicle dynamics, or trying my hand at simulations, I get
+								completely absorbed in the world of motorsport.</p>
+						</li>
+						<li>
+							<h4>Skiing⛷️</h4>
+							<p>Nothing beats the thrill of carving through fresh snow, feeling the rush of cold air, and
+								mastering new slopes. Skiing is pure freedom and adrenaline wrapped into one.</p>
+						</li>
+						<li>
+							<h4>Swimming🏊🏼</h4>
+							<p>The water has always been my reset button. Whether I’m training, unwinding, or just
+								enjoying the rhythm of each stroke, swimming keeps me grounded and helps me stay fit.
+							</p>
+						</li>
+					</ol>
+				</section>
+			</article>
+
+			<!-- Rickrolled -->
+			<article id="rickrolled">
+				<h2 class="major">Rickrolled</h2>
+				<span class="image main"><img src="images/rickroll.gif" alt="Rick Astley" /></span>
+				<p>Congratulations! You've been rickrolled! 🎉</p>
+				<p>Never gonna give you up, never gonna let you down, never gonna run around and desert you!</p>
+				<p>Enjoy the classic internet prank and have a great day! 😄</p>
+			</article>
+
+			<!-- Contact -->
+			<article id="contacts">
+				<h2 class="major">Contacts</h2>
+				<form action="https://formbold.com/s/objlN" method="POST">
+					<div class="fields">
+						<div class="field half">
+							<label for="name">Name</label>
+							<input type="text" placeholder="Name" required>
+						</div>
+						<div class="field half">
+							<label for="email">Email</label>
+							<input type="email" placeholder="Email" required>
+						</div>
+						<div class="field">
+							<label for="message">Message</label>
+							<textarea name="message" rows="4" placeholder="Message you want to send"
+								required></textarea>
+						</div>
+					</div>
+					<ul class="actions">
+						<li><input type="submit" class="button primary send" value="Send message"></li>
+						<li><input type="reset" class="button reset" value="Reset"></li>
+					</ul>
+				</form>
+				<ul class="icons">
+					<li><a href="https://www.linkedin.com/in/dylan-zanaglio/" class="icon fa-brands fa-linkedin"><span
+								class="label">Linkedin</span></a></li>
+					<li><a href="https://www.instagram.com/dylanhpgramm/" class="icon fa-brands fa-instagram"><span
+								class="label">Instagram</span></a></li>
+					<li><a href="https://github.com/DylanHP" class="icon fa-brands fa-github"><span
+								class="label">GitHub</span></a></li>
+				</ul>
+			</article>
+
+		</div>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<p class="copyright">&copy; Dylan portfolio. 2025</p>
+		</footer>
+
+	</div>
+
+	<!-- FW -->
+	<div class="follower"></div>
+	<!-- BG -->
+	<div id="bg"></div>
+
+	<!-- Scripts -->
+	<!-- Scripts font is awesome -->
+	<script src="https://kit.fontawesome.com/e7b13d838d.js" crossorigin="anonymous"></script>
+
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script src="assets/js/meme.js"></script>
+
+	<!-- Clippyjs -->
+	<!-- jQuery 1.7+ -->
+	<script src="jquery.1.7.min.js"></script>
+
+	<!-- Clippy.js -->
+	<script src="clippy.js/build/clippy.min.js"></script>
+
+	<!-- Init script -->
+	<script src="assets/js/clippy.js"></script>
+
+	<script src="assets/js/follower.js"></script>
+	</script>
+	
+	<!-- Includi Matter.js -->
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.17.1/matter.min.js"></script> -->
+	<!-- <script src="assets/js/sperimentation.js"></script> -->
+
+</body>
+
+</html>

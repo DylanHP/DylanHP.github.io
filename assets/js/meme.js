@@ -2,16 +2,24 @@ let lastPositions = [], shakeCount = 0, firstShakeTime = null;
 const shakeThreshold = 500, timeLimit = 1000, requiredShakes = 15;
 
 function openrickroll() {
-    const newWindow = window.open(
-        'https://www.youtube.com/watch?v=dQw4w9WgXcQ&autoplay=1&vq=hd1080&fs=1&modestbranding=1&rel=0&showinfo=0',
-        '_blank', 'width=800,height=600'
-    );
-    if (newWindow) {
-        newWindow.focus();
-        newWindow.moveTo(0, 0);
-        newWindow.resizeTo(screen.width, screen.height);
+    // Mostra la tile del rickroll nel Bento OS e fa partire il video
+    const rickTile = document.getElementById('rickrolled');
+    const btn = document.querySelector('.nav-btn[data-target="rickrolled"]');
+    
+    if (rickTile && rickTile.classList.contains('hidden')) {
+        rickTile.classList.remove('hidden');
+        if (btn) btn.classList.add('active');
+        
+        // Portalo in primo piano
+        rickTile.style.zIndex = 9999;
+        
+        // Inietta il video di YouTube con autoplay
+        const rickFrame = document.getElementById('rick-iframe');
+        if (rickFrame) {
+            // Rimossa la playlist RD... perché YouTube blocca gli embed delle "Radio/Mix"
+            rickFrame.src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1";
+        }
     }
-    window.location.hash = "rickrolled";
 }
 
 
@@ -44,7 +52,7 @@ document.addEventListener("mousemove", ({ clientX, clientY }) => {
 
 document.addEventListener('DOMContentLoaded', () => {
     let clickCount = 0;
-    const logo = document.querySelector('.logo');
+    const logo = document.querySelector('.logo img');
     if (logo) {
         logo.addEventListener('click', () => {
             clickCount++;

@@ -1825,3 +1825,218 @@ body.is-article-visible #footer {
 body.is-preload #footer {
 	opacity: 0;
 }
+/* ==========================================================================
+   REFINED RETRO-TECH / SOFT BRUTALISM THEME OVERRIDE
+   ========================================================================== */
+
+/* 1. Reset e Tipografia Generale */
+body, input, select, textarea {
+    font-family: 'Inter', sans-serif !important;
+    color: #1a1a1a !important;
+}
+
+h1, h2, h3, h4, h5, h6, .logo h1, .major {
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-weight: 700 !important;
+    color: #111111 !important;
+    letter-spacing: -0.02em !important;
+    text-transform: none !important;
+}
+
+/* 2. Sfondo (Background) */
+#bg {
+    background-color: #F4F4F0 !important;
+    /* Effetto griglia a punti leggerissima da ingegnere */
+    background-image: radial-gradient(#d1d1c7 1.5px, transparent 1.5px) !important;
+    background-size: 24px 24px !important;
+    transform: none !important;
+}
+#bg:before, #bg:after {
+    display: none !important; /* Rimuove overlay scuri del template base */
+}
+
+/* 3. Contenitore Principale (Header) */
+#header {
+    background-color: #FFFFFF !important;
+    background-image: none !important;
+    border: 2px solid #1a1a1a !important;
+    border-radius: 16px !important;
+    box-shadow: 8px 8px 0px #1a1a1a !important;
+    padding: 2rem !important;
+    max-width: 600px !important;
+    margin: 0 auto !important;
+}
+
+#header .content {
+    border-top: 2px solid #1a1a1a !important;
+    border-bottom: 2px solid #1a1a1a !important;
+    background: transparent !important;
+}
+#header .content p {
+    color: #333333 !important;
+    font-size: 1.1rem !important;
+}
+
+/* Foto Profilo nel Logo */
+.logo {
+    border: none !important;
+    width: auto !important;
+    height: auto !important;
+    line-height: normal !important;
+}
+.logo img {
+    border-radius: 50% !important;
+    border: 3px solid #1a1a1a !important;
+    box-shadow: 4px 4px 0px #1a1a1a !important;
+    width: 100px !important;
+    height: 100px !important;
+    object-fit: cover !important;
+    margin-bottom: 1rem !important;
+}
+.logo .icon {
+    display: none !important;
+}
+
+/* 4. Navigazione (Bottoni Meccanici) */
+#header nav ul {
+    border: none !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+    margin-top: 1rem !important;
+}
+#header nav ul li {
+    border: none !important;
+    flex-grow: 1 !important;
+}
+#header nav ul li a {
+    border: 2px solid #1a1a1a !important;
+    border-radius: 8px !important;
+    background-color: #ffffff !important;
+    color: #1a1a1a !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-weight: 700 !important;
+    box-shadow: 4px 4px 0px #1a1a1a !important;
+    transition: all 0.1s ease-in-out !important;
+    height: auto !important;
+    line-height: normal !important;
+    padding: 0.8rem 1rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+}
+
+/* Effetto Pressione sui bottoni (Soft Brutalism interaction) */
+#header nav ul li a:hover, #header nav ul li a:active {
+    background-color: #d4ff00 !important; /* Giallo Acido/Tech */
+    transform: translate(2px, 2px) !important;
+    box-shadow: 2px 2px 0px #1a1a1a !important;
+}
+
+/* 5. Articoli (Le finestre popup) */
+#main article {
+    background-color: #FFFFFF !important;
+    border: 2px solid #1a1a1a !important;
+    border-radius: 16px !important;
+    box-shadow: 8px 8px 0px #1a1a1a !important;
+    color: #333333 !important;
+}
+#main article h2.major, #main article h3.major {
+    border-bottom: 2px solid #1a1a1a !important;
+    color: #111 !important;
+}
+#main article .image.main {
+    border-radius: 8px !important;
+    border: 2px solid #1a1a1a !important;
+    overflow: hidden !important;
+}
+
+/* Tasto di chiusura (X) sugli articoli */
+#main article .close {
+    background-image: none !important;
+    background-color: #fff !important;
+    border: 2px solid #1a1a1a !important;
+    border-radius: 50% !important;
+    box-shadow: 2px 2px 0px #1a1a1a !important;
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+    line-height: 2.5rem !important;
+    top: 1rem !important;
+    right: 1rem !important;
+    transition: all 0.1s ease-in-out !important;
+    text-align: center !important;
+}
+#main article .close:before {
+    content: '✖' !important;
+    color: #1a1a1a !important;
+    font-size: 1.2rem !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+#main article .close:hover {
+    background-color: #ff3333 !important; /* Rosso chiusura */
+    transform: translate(2px, 2px) !important;
+    box-shadow: 0px 0px 0px #1a1a1a !important;
+}
+
+/* 6. Form Contatti */
+form input[type="text"], form input[type="email"], form textarea {
+    background-color: #F4F4F0 !important;
+    border: 2px solid #1a1a1a !important;
+    border-radius: 8px !important;
+    color: #1a1a1a !important;
+    font-family: 'Inter', sans-serif !important;
+}
+form input[type="text"]:focus, form input[type="email"]:focus, form textarea:focus {
+    background-color: #ffffff !important;
+    border-color: #d4ff00 !important;
+    box-shadow: 0 0 0 2px #1a1a1a !important;
+}
+
+form .button, form input[type="submit"], form input[type="reset"] {
+    background-color: #ffffff !important;
+    border: 2px solid #1a1a1a !important;
+    border-radius: 8px !important;
+    color: #1a1a1a !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-weight: 700 !important;
+    box-shadow: 4px 4px 0px #1a1a1a !important;
+    transition: all 0.1s ease-in-out !important;
+    text-shadow: none !important;
+}
+form .button:hover, form input[type="submit"]:hover {
+    background-color: #d4ff00 !important;
+    transform: translate(2px, 2px) !important;
+    box-shadow: 2px 2px 0px #1a1a1a !important;
+}
+form input[type="reset"]:hover {
+    background-color: #ff3333 !important;
+    color: #fff !important;
+    transform: translate(2px, 2px) !important;
+    box-shadow: 2px 2px 0px #1a1a1a !important;
+}
+
+/* 7. Icone Social */
+ul.icons li a {
+    color: #1a1a1a !important;
+    border: 2px solid transparent !important;
+    transition: all 0.2s ease !important;
+}
+ul.icons li a:hover {
+    color: #d4ff00 !important;
+    background-color: #1a1a1a !important;
+    border-radius: 8px !important;
+    transform: scale(1.1) !important;
+}
+
+/* Fix per link generici dentro gli articoli */
+#main article a {
+    color: #0055ff !important;
+    border-bottom: 2px solid #0055ff !important;
+    font-weight: 600 !important;
+    transition: all 0.2s ease !important;
+}
+#main article a:hover {
+    color: #1a1a1a !important;
+    background-color: #d4ff00 !important;
+}

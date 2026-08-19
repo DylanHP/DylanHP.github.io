@@ -5,7 +5,8 @@ if (!('ontouchstart' in window || navigator.maxTouchPoints)) {
 
     document.documentElement.style.cursor = 'none';
     const follower = document.querySelector('.follower');
-    const content = document.querySelector('.content');
+    // .content non esiste più, uso .window-content
+    const contents = document.querySelectorAll('.window-content');
     document.body.style.cursor = 'none';
 
 
@@ -45,7 +46,7 @@ if (!('ontouchstart' in window || navigator.maxTouchPoints)) {
         document.body.style.cursor = show ? 'none' : 'default';
     };
 
-    document.querySelectorAll('article').forEach(article => {
+    document.querySelectorAll('.window-tile').forEach(article => {
         // Nacondo follower quando il mouse è sopra l'articolo
         article.addEventListener('mouseover', event => {
             if (!event.target.closest('.close, .icon, .send, .reset')) toggleFollower(false);
@@ -97,8 +98,10 @@ if (!('ontouchstart' in window || navigator.maxTouchPoints)) {
     });
 
 
-    content.addEventListener('mouseover', () => toggleFollower(false));
-    content.addEventListener('mouseout', () => toggleFollower(true));
+    contents.forEach(content => {
+        content.addEventListener('mouseover', () => toggleFollower(false));
+        content.addEventListener('mouseout', () => toggleFollower(true));
+    });
 
     // Gestione per evitare di andare fuori dai bordi
     document.body.onpointermove = ({ clientX, clientY }) => {

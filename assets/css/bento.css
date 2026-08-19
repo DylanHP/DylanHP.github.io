@@ -1,0 +1,567 @@
+/* ==========================================================================
+   BENTO GRID OS - RETRO-TECH THEME
+   ========================================================================== */
+
+/* 1. RESET E VARIABILI */
+:root {
+	--bg-color: #F4F4F0;
+	--grid-dot: #d1d1c7;
+	--window-bg: #FFFFFF;
+	--border-color: #1a1a1a;
+	--text-main: #1a1a1a;
+	--text-muted: #4a4a4a;
+	--accent-color: #d4ff00; /* Giallo Tech */
+	--accent-hover: #bde600;
+	--danger-color: #ff4747;
+	--shadow-size: 6px;
+	
+	--font-title: 'Space Grotesk', sans-serif;
+	--font-body: 'Inter', sans-serif;
+}
+
+/* PALETTE COLORI RETRO-TECH */
+.color-profile { background-color: #FFF3C7 !important; } /* Giallo Pallido */
+.color-aboutme { background-color: #E6E6FA !important; } /* Lavanda */
+.color-projects { background-color: #DDEEFF !important; } /* Azzurro Polvere */
+.color-passions { background-color: #FFE5D9 !important; } /* Pesca Chiaro */
+.color-contacts { background-color: #D4F0F0 !important; } /* Verde Acqua */
+.color-rick { background-color: #FFD1DC !important; } /* Rosa */
+.color-terminal { background-color: #2b2b2b !important; } /* Grigio scuro per terminale */
+
+/* I bottoni del menù prendono il colore della loro finestra */
+.nav-btn.aboutme.active { background-color: #E6E6FA !important; }
+.nav-btn.projects.active { background-color: #DDEEFF !important; }
+.nav-btn.passions.active { background-color: #FFE5D9 !important; }
+.nav-btn.contacts.active { background-color: #D4F0F0 !important; }
+.nav-btn.terminal-btn.active { background-color: #2b2b2b !important; color: #00FF41 !important; border-color: #00FF41 !important; }
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: var(--font-body);
+	color: var(--text-main);
+	background-color: var(--bg-color);
+	/* Sfondo a griglia tecnica */
+	background-image: radial-gradient(var(--grid-dot) 1.5px, transparent 1.5px);
+	background-size: 24px 24px;
+	overflow: hidden; /* NIENTE PIU SCROLLING */
+	height: 100vh;
+	width: 100vw;
+	line-height: 1.6;
+}
+
+a {
+	color: var(--text-main);
+	text-decoration: underline;
+	text-decoration-thickness: 2px;
+	text-decoration-color: var(--accent-color);
+	transition: all 0.2s ease;
+}
+
+a:hover {
+	background-color: var(--accent-color);
+	color: var(--text-main);
+}
+
+h1, h2, h3, h4 {
+	font-family: var(--font-title);
+	font-weight: 700;
+	color: var(--border-color);
+	margin-bottom: 1rem;
+	letter-spacing: -0.02em;
+}
+
+/* 2. LAYOUT DESKTOP (Vero OS, Container Centrato) */
+.bento-grid {
+	position: relative;
+	width: 100%;
+	max-width: 1640px; /* Misura intermedia "perfetta" */
+	margin: 0 auto;
+	height: 100vh;
+	display: block;
+	padding: 0 20px;
+}
+
+/* 3. BENTO TILE BASE (Le Finestre Fluttuanti) */
+.bento-item {
+	background-color: var(--window-bg);
+	border: 3px solid var(--border-color);
+	border-radius: 12px;
+	box-shadow: var(--shadow-size) var(--shadow-size) 0px var(--border-color);
+	display: flex;
+	flex-direction: column;
+	transition: opacity 0.2s ease;
+	position: absolute; /* Tutte le finestre sono fluttuanti */
+	resize: both; /* PERMETTE IL RIDIMENSIONAMENTO */
+	overflow: hidden;
+	min-width: 300px;
+	min-height: 200px;
+}
+
+.bento-item.hidden {
+	display: none;
+	opacity: 0;
+}
+
+/* Utility Class per grandezze */
+.span-2-col { grid-column: span 2; }
+.span-2-row { grid-row: span 2; }
+.span-3-col { grid-column: span 3; }
+.span-4-col { grid-column: span 4; }
+
+/* 4. PROFILE TILE (Fisso a sinistra, altezza fissa e centrato verticalmente con le tile) */
+.profile-tile::-webkit-scrollbar {
+	display: none;
+}
+.profile-tile {
+	padding: 30px;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	width: 380px; /* Grandezza intermedia */
+	height: 750px; /* Altezza intermedia */
+	top: max(20px, calc(50vh - 375px)); /* Centra verticalmente il blocco da 750px */
+	transform: none; 
+	left: 20px;
+	z-index: 99999;
+	resize: none;
+	overflow: hidden; /* Rimosso lo scroll: il contenuto è stato ottimizzato per starci esattamente */
+}
+
+.profile-header {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.profile-header .avatar {
+	width: 175px; /* Grandezza intermedia (tra 150 e 200) */
+	height: 175px;
+	border-radius: 50%;
+	border: 4px solid var(--border-color);
+	box-shadow: 6px 6px 0px var(--border-color);
+	object-fit: cover;
+	margin-bottom: 20px;
+}
+
+.bento-nav {
+	display: flex;
+	flex-direction: column;
+	gap: 10px; /* Ridotto leggermente per far entrare tutto perfettamente */
+	margin-top: 15px; /* Ridotto per adattarsi all'altezza di 750px senza scroll */
+}
+
+/* Bottoni Meccanici (Menù) */
+.nav-btn {
+	background: var(--window-bg);
+	border: 2px solid var(--border-color);
+	border-radius: 8px;
+	box-shadow: 4px 4px 0px var(--border-color);
+	font-family: var(--font-title);
+	font-weight: 700;
+	font-size: 0.95rem; /* Appena rimpicciolito per fitting perfetto */
+	text-transform: uppercase;
+	padding: 10px; /* Padding ottimizzato */
+	cursor: pointer;
+	transition: all 0.1s ease-in-out;
+	color: var(--border-color);
+}
+
+.nav-btn:hover, .nav-btn.active {
+	background-color: var(--accent-color);
+	transform: translate(2px, 2px);
+	box-shadow: 2px 2px 0px var(--border-color);
+}
+
+.nav-btn.active {
+	background-color: #e0e0e0; /* Stato premuto */
+	box-shadow: 0px 0px 0px var(--border-color);
+	transform: translate(4px, 4px);
+}
+
+.social-icons {
+	list-style: none;
+	display: flex;
+	justify-content: center;
+	gap: 15px;
+	margin-top: 15px; /* Ridotto per fitting perfetto nella finestra */
+}
+.social-icons a, .social-icons button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 45px;
+	height: 45px;
+	border: 2px solid var(--border-color);
+	border-radius: 8px;
+	background: var(--window-bg);
+	color: var(--border-color);
+	font-size: 1.5rem;
+	box-shadow: 3px 3px 0px var(--border-color);
+	text-decoration: none;
+	cursor: pointer;
+	padding: 0;
+}
+.social-icons a:hover, .social-icons button:hover {
+	background: var(--accent-color);
+	transform: translate(2px, 2px);
+	box-shadow: 1px 1px 0px var(--border-color);
+}
+
+/* 5. WINDOW TILES (Dimensioni Bento Adattive) */
+.window-tile {
+	padding: 0;
+	height: auto; /* Si adatta automaticamente alla quantità di testo! */
+	max-width: calc(100vw - 80px) !important; /* MAI più larga dello schermo */
+	max-height: calc(100vh - 80px) !important; /* MAI più alta dello schermo */
+}
+
+/* GRIGLIA DI PARTENZA ORDINATA E CENTRATA (Altezza: 750px) */
+/* Colonna 2: About Me (Grandezza intermedia) */
+#aboutme { top: max(20px, calc(50vh - 375px)); left: 420px; width: 750px; height: 750px; } /* Rimosso max-height per resize */
+
+/* Colonna 3: Contacts e Terminale (Spazio proporzionato) */
+#contacts { top: max(20px, calc(50vh - 375px)); left: calc(100% - 450px); width: 430px; height: 500px; }
+#terminal-box { top: max(540px, calc(50vh + 145px)); left: calc(100% - 450px); width: 430px; height: 230px; }
+
+/* Le altre finestre mantengono un leggero sfalsamento se aperte dopo */
+#projects { top: max(60px, calc(50vh - 335px)); left: 450px; width: 800px; }
+#passions { top: max(100px, calc(50vh - 295px)); left: 480px; width: 750px; }
+#rickrolled { top: max(140px, calc(50vh - 255px)); left: 430px; width: 550px; }
+
+.title-bar {
+	background-color: var(--border-color);
+	color: #fff;
+	padding: 8px 15px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-family: 'Space Grotesk', monospace;
+	font-size: 0.9rem;
+	border-bottom: 2px solid var(--border-color);
+	cursor: grab;
+	user-select: none; /* Impedisce che il testo venga selezionato mentre trascini */
+}
+.title-bar:active {
+	cursor: grabbing;
+}
+
+.title-bar .close-btn {
+	background: #fff;
+	border: 2px solid var(--border-color);
+	border-radius: 5px;
+	width: 25px;
+	height: 25px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	color: var(--border-color);
+	box-shadow: 2px 2px 0px #fff;
+	transition: all 0.1s;
+}
+.title-bar .close-btn:hover {
+	background: var(--danger-color);
+	color: #fff;
+	transform: translate(1px, 1px);
+	box-shadow: 1px 1px 0px #fff;
+}
+
+.window-content {
+	padding: 25px;
+	flex-grow: 1;
+	overflow-y: auto;
+	min-height: 0; /* Fondamentale per far funzionare lo scroll dentro un flex container con max-height */
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+/* Nasconde la scrollbar su Chrome, Safari e Edge */
+.window-content::-webkit-scrollbar {
+	display: none;
+}
+
+/* Elementi dentro i contenuti */
+.full-img {
+	width: 100%;
+	border: 2px solid var(--border-color);
+	border-radius: 8px;
+	margin-bottom: 15px;
+	display: block;
+}
+
+.divider {
+	border: none;
+	border-top: 2px dashed var(--border-color);
+	margin: 30px 0;
+}
+
+.grid-2-col {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 20px;
+}
+
+/* Project Cards all'interno delle finestre */
+.project-column {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+.column-title {
+	font-family: var(--font-title);
+	color: var(--border-color);
+	font-size: 1.4rem;
+}
+.project-card {
+	background: #ffffff;
+	border: 2px solid var(--border-color);
+	border-radius: 8px;
+	box-shadow: 4px 4px 0px var(--border-color);
+	overflow: hidden;
+	transition: transform 0.1s;
+}
+.project-card:hover {
+	transform: translate(-2px, -2px);
+	box-shadow: 6px 6px 0px var(--border-color);
+}
+
+/* Colori Pastello per le Mini-Card interne */
+.card-blue { background-color: #E8F0FE; }
+.card-green { background-color: #E6F4EA; }
+.card-purple { background-color: #F3E8FD; }
+.card-red { background-color: #FCE8E6; }
+
+.project-img {
+	width: 100%;
+	height: 180px;
+	object-fit: cover;
+	border-bottom: 2px solid var(--border-color);
+	display: block;
+}
+.project-info {
+	padding: 20px;
+}
+.project-info h4 {
+	margin-bottom: 10px;
+	color: var(--border-color);
+	font-size: 1.1rem;
+	font-family: var(--font-title);
+	font-weight: 700;
+}
+.project-info p {
+	margin: 0;
+	font-size: 0.95rem;
+	line-height: 1.5;
+	color: var(--text-muted);
+}
+
+.text-center { text-align: center; }
+
+/* 6. FORM */
+.bento-form {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+.bento-form label {
+	font-weight: 600;
+	font-family: var(--font-title);
+}
+.bento-form input, .bento-form textarea {
+	width: 100%;
+	padding: 12px;
+	border: 2px solid var(--border-color);
+	border-radius: 8px;
+	background: var(--bg-color);
+	font-family: var(--font-body);
+	outline: none;
+}
+.bento-form textarea {
+	resize: none !important; /* Impedisce di deformare il form internamente, usa il resize della finestra! */
+}
+.bento-form input:focus, .bento-form textarea:focus {
+	background: #fff;
+	border-color: var(--border-color);
+	box-shadow: 4px 4px 0px var(--accent-color);
+}
+.submit-btn {
+	background: var(--border-color);
+	color: #fff;
+	border: 2px solid var(--border-color);
+	padding: 12px;
+	border-radius: 8px;
+	font-family: var(--font-title);
+	font-weight: bold;
+	text-transform: uppercase;
+	cursor: pointer;
+	box-shadow: 4px 4px 0px var(--accent-color);
+	transition: all 0.1s;
+}
+.submit-btn:hover {
+	transform: translate(2px, 2px);
+	box-shadow: 2px 2px 0px var(--accent-color);
+}
+
+/* 7. RESPONSIVE DESIGN (Per mobile trasformiamo in lista scrollabile per usabilità) */
+@media screen and (max-width: 980px) {
+	/* Clippy sempre visibile anche su mobile (rimosse regole che lo nascondono) */
+	/* Le finestrelle ora si espandono sempre a pieno contenuto su mobile, senza limiti nè scrollbar interne! */
+	.window-tile {
+		height: auto !important;
+		max-height: none !important;
+		min-height: 0 !important;
+	}
+	.window-content {
+		max-height: none !important;
+		overflow-y: visible !important;
+	}
+
+	/* FIX nav bento responsive: gap ampio + pressione soft */
+	.bento-nav {
+		gap: 15px !important;
+	}
+	.nav-btn {
+		margin-bottom: 2px !important;
+	}
+	.nav-btn:hover, .nav-btn.active {
+		transform: translate(1.5px, 1.5px) !important;
+		box-shadow: 2px 2px 0px var(--border-color) !important;
+	}
+
+	/* --- FIX allineamento larghezza box & profile su mobile --- */
+	.profile-tile, .bento-item, .window-tile {
+		width: 100% !important;
+		max-width: 100% !important;
+		min-width: 0 !important;
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+	}
+	/* --- FIX avatar sempre cerchio perfetto anche su mobile --- */
+.profile-header .avatar, .avatar {
+	border-radius: 50% !important;
+	aspect-ratio: 1 / 1 !important;
+	object-fit: cover !important;
+	width: 120px !important;
+	height: 120px !important;
+	max-width: 120px !important;
+	max-height: 120px !important;
+	margin: 16px auto 12px auto !important;
+	display: block !important;
+	box-shadow: 4px 4px 0px var(--border-color) !important;
+	border: 4px solid var(--border-color) !important;
+}
+
+	/* --- FIX nav-btn menu sempre coerente e touch-friendly --- */
+	.bento-nav {
+		gap: 6px !important;
+		margin-top: 10px !important;
+		align-items: stretch !important;
+	}
+	.nav-btn {
+		border-radius: 8px !important;
+		padding: 10px 4px !important;
+		font-size: 0.98rem !important;
+		font-family: var(--font-title) !important;
+		font-weight: 700 !important;
+		line-height: 1.1 !important;
+		box-shadow: 3px 3px 0px var(--border-color) !important;
+		height: auto !important;
+		min-width: 0 !important;
+		width: 100% !important;
+		display: block !important;
+		margin: 0 !important;
+		text-align: center !important;
+		text-transform: uppercase !important;
+	}
+
+	/* PATCH colonne grid-2 su mobile: stack verticale */
+	.grid-2-col {
+		display: flex !important;
+		flex-direction: column !important;
+		gap: 12px !important;
+	}
+	.project-column {
+		width: 100% !important;
+	}
+	.project-card {
+		width: 100% !important;
+	}
+	.window-tile {
+		padding: 0 0 12px 0 !important;
+	}
+	.window-content {
+		padding: 14px !important;
+	}
+
+	/* PATCH immagini e icone social responsive */
+	.avatar, .profile-header .avatar, .full-img, .project-img {
+		max-width: 100% !important;
+		height: auto !important;
+	}
+	.social-icons {
+		gap: 8px !important;
+	}
+	.social-icons a, .social-icons button {
+		width: 38px !important;
+		height: 38px !important;
+		font-size: 1.1rem !important;
+	}
+
+	/* --- PATCH responsive: riduco min-width bento-item sotto 400px --- */
+	@media screen and (max-width: 400px) {
+		.bento-item {
+			min-width: 180px !important;
+		}
+	}
+	/* --- PATCH nav-btn: padding più piccolo e gap ridotto su mobile piccolo --- */
+	@media screen and (max-width: 480px) {
+		.bento-nav {
+			gap: 5px !important;
+		}
+		.nav-btn {
+			padding: 6px !important;
+			font-size: 0.9rem !important;
+		}
+	}
+
+	body {
+		overflow: auto; /* Riattiva lo scroll su mobile */
+		height: auto;
+	}
+	.bento-grid {
+		display: flex;
+		flex-direction: column;
+		height: auto;
+		padding: 20px;
+	}
+	.bento-item {
+		position: static !important; /* Su mobile non fluttuano, stanno in colonna */
+		transform: none !important;
+		width: 100% !important;
+		height: auto !important;
+		min-height: 200px;
+		margin-bottom: 20px;
+		resize: none; /* Disabilita resize su telefono */
+	}
+}
+
+/* 8. FOLLOWER (Dal tema precedente) */
+.no-touch .follower {
+	width: 80px;
+	height: 80px;
+	background-image: url('../../images/follower.gif');
+	position: absolute;
+	background-size: cover;
+	pointer-events: none;
+	top: 0;
+	left: 0;
+	z-index: 9999;
+}
+.no-touch .follower.hidden {
+	display: none;
+}
+
+/* Fix for Clippy inside the box */

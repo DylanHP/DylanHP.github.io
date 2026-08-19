@@ -1,281 +1,398 @@
-<!DOCTYPE HTML>
-<!--
-	Dimension by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-	Css and Index modifided by Dylan Zanaglio
-	-->
-<html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Dylan Zanaglio - Portfolio</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
 
-<head>
-	<title>Dylan Portfolio</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<!-- Clippyjs -->
-	<link rel="stylesheet" type="text/css" href="clippy.js/build/clippy.css" media="all">
-	<!-- My css -->
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-	<link rel="icon" href="images/me_rounded.png" type="image/png">
-	<noscript>
-		<link rel="stylesheet" href="assets/css/noscript.css" />
-	</noscript>
-</head>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
 
-<body class="is-preload">
-	<!-- Wrapper -->
-	<div id="wrapper">
+    <!-- FontAwesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
 
-		<!-- Header -->
-		<header id="header">
-			<div class="logo">
-				<!-- change the icon -->
-				<img class="rick" src="images/me.jpg">
-			</div>
-			<div class="content">
-				<div class="inner">
-					<h1>My portfolio</h1>
-					<p>Hello My name is dylan and <br>This is a simple website to showcase my projects, passions and
-						projects.<br />
-					</p>
-				</div>
-			</div>
-			<nav>
-				<ul>
-					<li class="nav-buttons "><a class="aboutme" href="#aboutme">About ⁠Me</a></li>
-					<li class="nav-buttons "><a class="projects" href="#projects">Projects</a></li>
-					<li class="nav-buttons "><a class="passions" href="#passions">Passions</a></li>
-					<li class="nav-buttons "><a class="contacts" href="#contacts">Contacts</a></li>
-					<!--<li><a href="#elements">Elements</a></li>-->
-				</ul>
-			</nav>
-		</header>
+    <!-- Clippyjs -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="clippy.js/build/clippy.css"
+      media="all"
+    />
 
-		<!-- Main -->
-		<div id="main">
+    <!-- JQuery Terminal CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.37.0/css/jquery.terminal.min.css"
+    />
 
-			<!-- Intro -->
-			<article id="aboutme">
-				<h2 class="major">About me</h2>
-				<span class="image main"><img src="images/about.jpg" alt="" /></span>
-				<p>Hi, I'm Dylan Zanaglio, an <b>Electronic Engineering student</b> at <b>UNIBS</b> (University of
-					Brescia) with a
-					deep passion for <b>electronics</b>, <b>embedded systems</b>, <b>innovation</b>, and
-					<b>Motorsport</b>.
-				</p>
-				<p>I am always eager to explore new technologies, electronic design methodologies, and programming
-					techniques. My studies and hands-on experience have allowed me to work on <b>hardware projects</b>,
-					develop
-					<b>embedded firmware</b>, and design <b>circuits</b>. I thrive on tackling challenges and pushing
-					the boundaries
-					of technology. As the <b>Eletronic division leader</b> at <b><a
-							href="https://www.unibsmotostudent.it/" target="_blank">GIVI UniBS MotoStudent Team</a></b>,
-					I have
-					the opportunity to develop and test innovative ideas in a dynamic environment.
-				</p>
-				<p>During my studies, I developed a strong interest in <b>competitive programming</b> and
-					<b>problem-solving</b>,
-					which led me to participate in the <b>IEEXtreme competition</b>—an intense global coding challenge.
-					This
-					experience enhanced my skills in <b>algorithm development</b>, <b>efficiency optimization</b>, and
-					<b>teamwork</b>.
-				</p>
-				<p>Professionally, I have worked on developing <b>embedded boards</b> and <b>user interfaces</b> for
-					<b>HVAC heat
-						recovery devices</b>, gaining hands-on experience with <b>microcontrollers</b>, <b>PCB
-						design</b>, and
-					<b>firmware
-						development</b> in an industrial setting.
-				</p>
-				<p>If you share similar interests or want to discuss exciting tech ideas, feel free to connect with me!
-					🚀</p>
-			</article>
+    <!-- Nuovo CSS Bento Grid -->
+    <link rel="stylesheet" href="assets/css/bento.css" />
 
-			<!-- projects -->
-			<article id="projects">
-				<h2 class="major">Projects</h2>
-				<span class="image main"><img src="images/projects1.jpg" alt="" /></span>
-				<h3 class="major">Personal Projects</h3>
+    <link rel="icon" href="images/me_rounded.png" type="image/png" />
+  </head>
 
-				<h4>Electric Scooter Conversion</h4>
-				<p>I'm upgrading an electric scooter by replacing its original lead-acid batteries and 250W motor with a
-					more powerful and efficient system. The new setup features a <b>48V 18650 lithium battery pack</b>
-					and a <b>2kW three-phase asynchronous motor</b>, significantly improving performance and range.</p>
+  <body>
+    <!-- Sfondo a griglia -->
+    <div id="bg"></div>
 
-				<h4>Homelab Development</h4>
-				<p>My homelab is built around a <b>Ryzen 5 5600G</b> with <b>16GB RAM @ 3200MHz</b>, a <b>Coral TPU</b>,
-					and <b>6TB raw storage (3TB RAIDZ1)</b>. It hosts multiple services, including:</p>
-				<ul>
-					<li><b>Home Assistant</b> (smart home automation)</li>
-					<li><b>Frigate</b> (AI-powered security camera system)</li>
-					<li><b>Omada Controller</b> (network management)</li>
-					<li><b>Immich</b> (self-hosted photo management)</li>
-					<li><b>Nextcloud</b> (private cloud storage)</li>
-					<li>And more...</li>
-				</ul>
+    <!-- Griglia Bento Principale -->
+    <div class="bento-grid" id="grid">
+      <!-- ========================================== -->
+      <!-- 1. PROFILO / MENU (Nella griglia, in alto a sx) -->
+      <!-- ========================================== -->
+      <div class="bento-item profile-tile logo color-profile" style="order: -1">
+        <div class="profile-header">
+          <img class="avatar" src="images/me.jpg" alt="Dylan Zanaglio" />
+          <h1>My Portfolio</h1>
+        </div>
 
-				<span class="image main"><img src="images/projects2.jpg" alt="" /></span>
-				<h3 class="major">University Projects</h3>
+        <p>
+          Hello! My name is Dylan and this is a simple website to showcase my
+          projects, passions, and works.
+        </p>
 
-				<h4>Givi MotoStudent Team</h4>
-				<p>As part of the electronic team in the Givi MotoStudent project at UniBS, I contribute to modernizing
-					the motorcycle's sensor data acquisition system. Our goals include:</p>
-				<ul>
-					<li>Developing custom sensor aggregator boards in-house</li>
-					<li>Using a <b>Raspberry Pi 5</b> as the main controller with a touchscreen interface for the rider
-					</li>
-					<li>Integrating additional data sources like a weather station and a heart rate sensor</li>
-				</ul>
+        <nav class="bento-nav">
+          <button class="nav-btn aboutme" data-target="aboutme">
+            About Me
+          </button>
+          <button class="nav-btn projects" data-target="projects">
+            Projects
+          </button>
+          <button class="nav-btn passions" data-target="passions">
+            Passions
+          </button>
+          <button class="nav-btn contacts" data-target="contacts">
+            Contacts
+          </button>
+        </nav>
 
-				<h4>CyberChallenge.IT</h4>
-				<p>I recently joined the <b>CyberChallenge.IT</b>, a national CTF-style cybersecurity competition. I'm
-					currently getting familiar with the competition format and challenges.</p>
+        <ul class="social-icons">
+          <li>
+            <a
+              href="https://www.linkedin.com/in/dylan-zanaglio/"
+              class="icon ext-link"
+              target="_blank"
+              ><i class="fa-brands fa-linkedin"></i
+            ></a>
+          </li>
+          <li>
+            <a
+              href="https://www.instagram.com/dylanhpgramm/"
+              class="icon ext-link"
+              target="_blank"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+          </li>
+          <li>
+            <a
+              href="https://github.com/DylanHP"
+              class="icon ext-link"
+              target="_blank"
+              ><i class="fa-brands fa-github"></i
+            ></a>
+          </li>
+          <li>
+            <button
+              class="icon terminal-btn logo nav-btn"
+              data-target="terminal-box"
+            >
+              <i class="fa-solid fa-terminal"></i>
+            </button>
+          </li>
+          <li>
+            <button
+              class="icon secret-btn logo nav-btn"
+              data-target="rickrolled"
+            >
+              <i class="fa-solid fa-gift"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
 
-				<h4>IEEExtreme 2021</h4>
-				<p>In 2021, I participated in <b>IEEExtreme</b>, a global programming competition that tests
-					problem-solving skills across various topics.</p>
-			</article>
+      <!-- ========================================== -->
+      <!-- 2. TILE: ABOUT ME (Aperta di default)      -->
+      <!-- ========================================== -->
+      <div
+        class="bento-item window-tile span-2-col span-2-row color-aboutme"
+        id="aboutme"
+      >
+        <div class="title-bar">
+          <span class="window-title">C:\Users\Dylan\About_Me.exe</span>
+          <button class="close-btn close" data-target="aboutme">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="window-content">
+          <h2>About me</h2>
+          <img src="images/about.jpg" alt="About Dylan" class="full-img" />
+          <p>
+            Hi, I'm Dylan Zanaglio, an <b>Electronic Engineering student</b> at
+            <b>UNIBS</b> (University of Brescia) with a deep passion for
+            <b>electronics</b>, <b>embedded systems</b>, <b>innovation</b>, and
+            <b>Motorsport</b>.
+          </p>
+          <p>
+            I am always eager to explore new technologies, electronic design
+            methodologies, and programming techniques. My studies and hands-on
+            experience have allowed me to work on <b>hardware projects</b>,
+            develop <b>embedded firmware</b>, and design <b>circuits</b>.
+          </p>
+          <p>
+            As the <b>Electronic division leader</b> at
+            <b
+              ><a href="https://www.unibsmotorsports.com/" target="_blank"
+                >GIVI UniBS MotoStudent Team</a
+              ></b
+            >, I have the opportunity to develop and test innovative ideas in a
+            dynamic environment.
+          </p>
+          <p>
+            During my studies, I developed a strong interest in
+            <b>competitive programming</b> and <b>problem-solving</b>, which led
+            me to participate in the <b>IEEXtreme competition</b>.
+            Professionally, I have worked on developing
+            <b>embedded boards</b> and <b>user interfaces</b> for HVAC heat
+            recovery devices.
+          </p>
+        </div>
+      </div>
 
-			<!-- Passions -->
-			<article id="passions">
-				<h2 class="major">Passions</h2>
-				<span class="image main"><img src="images/passions.jpg" alt="" /></span>
-				<h3>Photography📷</h3>
-				<p>For me, photography is more than just taking pictures—it's about capturing emotions, stories, and the
-					thrill of a moment. Whether I'm out in nature shooting landscapes or trying to freeze the raw speed
-					of a motorsport event, I love the challenge of finding the perfect angle, the right lighting, and
-					the best composition. It’s my way of seeing the world differently and sharing my perspective with
-					others.</p>
+      <!-- ========================================== -->
+      <!-- 3. TILE: PROJECTS (Larga e alta, chiusa di default) -->
+      <!-- ========================================== -->
+      <div
+        class="bento-item window-tile span-2-col span-2-row hidden color-projects"
+        id="projects"
+      >
+        <div class="title-bar">
+          <span class="window-title">/home/dylan/projects</span>
+          <button class="close-btn close" data-target="projects">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="window-content" style="background: #F4F4F0;">
+          <h2 style="text-align: center; margin-bottom: 25px;">Projects Portfolio</h2>
 
-				<h3>Electronics Projects📟</h3>
-				<p>Ever since I was a kid, I’ve been fascinated by how things work. Tinkering with electronics lets me
-					turn ideas into reality, whether it’s building circuits, working with microcontrollers, or
-					automating tasks. I love the process of problem-solving, debugging, and eventually watching a
-					project come to life. It’s that mix of creativity and technical skill that keeps me hooked.</p>
-
-				<h3>Homelabs🌐</h3>
-				<p>There's something deeply satisfying about designing and optimizing my own homelab. From setting up
-					virtual machines to fine-tuning network configurations, I enjoy pushing the limits of what I can
-					build at home. It’s not just about having a personal server—it's about experimenting, learning, and
-					constantly improving my setup to make everything more efficient and secure.</p>
-
-				<section>
-					<h3>Sports🏃🏻</h3>
-					<p>I’ve always been drawn to sports that challenge both the body and mind. They push my limits, fuel
-						my competitive side, and give me an escape from the daily routine.</p>
-					<ol>
-						<li>
-							<h4>Mountain Biking🚴🏻‍♂️</h4>
-							<p>There's no better feeling than flying down a trail, navigating technical descents, and
-								pushing myself on the climbs. It’s a sport that demands focus, skill, and endurance, and
-								I love every second of it.</p>
-						</li>
-						<li>
-							<h4>Motorsport🏎️</h4>
-							<p>The combination of speed, precision, and engineering fascinates me. Whether I’m watching
-								a race, learning about vehicle dynamics, or trying my hand at simulations, I get
-								completely absorbed in the world of motorsport.</p>
-						</li>
-						<li>
-							<h4>Skiing⛷️</h4>
-							<p>Nothing beats the thrill of carving through fresh snow, feeling the rush of cold air, and
-								mastering new slopes. Skiing is pure freedom and adrenaline wrapped into one.</p>
-						</li>
-						<li>
-							<h4>Swimming🏊🏼</h4>
-							<p>The water has always been my reset button. Whether I’m training, unwinding, or just
-								enjoying the rhythm of each stroke, swimming keeps me grounded and helps me stay fit.
-							</p>
-						</li>
-					</ol>
-				</section>
-			</article>
-
-			<!-- Rickrolled -->
-			<article id="rickrolled">
-				<h2 class="major">Rickrolled</h2>
-				<span class="image main"><img src="images/rickroll.gif" alt="Rick Astley" /></span>
-				<p>Congratulations! You've been rickrolled! 🎉</p>
-				<p>Never gonna give you up, never gonna let you down, never gonna run around and desert you!</p>
-				<p>Enjoy the classic internet prank and have a great day! 😄</p>
-			</article>
-
-			<!-- Contact -->
-			<article id="contacts">
-				<h2 class="major">Contacts</h2>
-				<form action="https://formbold.com/s/objlN" method="POST">
-					<div class="fields">
-						<div class="field half">
-							<label for="name">Name</label>
-							<input type="text" placeholder="Name" required>
+          <div class="grid-2-col">
+            <!-- Colonna Sinistra -->
+            <div class="project-column">
+              <h3 class="column-title" style="text-align: center; border-bottom: 2px solid #1a1a1a; padding-bottom: 10px;">Personal Projects</h3>
+              
+						<div class="project-card card-blue">
+							<img src="images/projects1.jpg" alt="Projects" class="project-img" />
+							<div class="project-info">
+								<h4>Electric Scooter Conversion</h4>
+								<p>Engineered a comprehensive hardware upgrade for an electric scooter. Replaced original lead-acid batteries and 250W motor with a custom <b>48V 18650 lithium battery pack</b> and a high-efficiency <b>2kW three-phase asynchronous motor</b>.</p>
+							</div>
 						</div>
-						<div class="field half">
-							<label for="email">Email</label>
-							<input type="email" placeholder="Email" required>
+
+						<div class="project-card card-purple">
+							<div class="project-info">
+								<h4>Homelab Infrastructure</h4>
+								<p>Architected and deployed a personal server environment built on a <b>Ryzen 5 5600G</b>, integrating a <b>Coral TPU</b> and <b>6TB raw storage</b>. Currently hosting and maintaining services including Home Assistant, Frigate, Omada, and Nextcloud.</p>
+							</div>
+              </div>
+            </div>
+
+            <!-- Colonna Destra -->
+            <div class="project-column">
+              <h3 class="column-title" style="text-align: center; border-bottom: 2px solid #1a1a1a; padding-bottom: 10px;">University Projects</h3>
+              
+						<div class="project-card card-green">
+							<img src="images/projects2.jpg" alt="University Projects" class="project-img" />
+							<div class="project-info">
+								<h4>Givi MotoStudent Team</h4>
+								<p>Developing custom sensor aggregator boards and deploying a <b>Raspberry Pi 5</b> as the central controller, featuring a real-time touchscreen telemetry interface for the rider.</p>
+							</div>
 						</div>
-						<div class="field">
-							<label for="message">Message</label>
-							<textarea name="message" rows="4" placeholder="Message you want to send"
-								required></textarea>
+
+						<div class="project-card card-red">
+							<img src="images/torino.jpg" alt="CyberChallenge Torino" class="project-img" />
+							<div class="project-info">
+								<h4>CyberChallenge.IT & IEEExtreme</h4>
+								<p>Active competitor in national and global CTF-style cybersecurity challenges and algorithmic competitive programming competitions.</p>
+							</div>
 						</div>
-					</div>
-					<ul class="actions">
-						<li><input type="submit" class="button primary send" value="Send message"></li>
-						<li><input type="reset" class="button reset" value="Reset"></li>
-					</ul>
-				</form>
-				<ul class="icons">
-					<li><a href="https://www.linkedin.com/in/dylan-zanaglio/" class="icon fa-brands fa-linkedin"><span
-								class="label">Linkedin</span></a></li>
-					<li><a href="https://www.instagram.com/dylanhpgramm/" class="icon fa-brands fa-instagram"><span
-								class="label">Instagram</span></a></li>
-					<li><a href="https://github.com/DylanHP" class="icon fa-brands fa-github"><span
-								class="label">GitHub</span></a></li>
-				</ul>
-			</article>
+            </div>
+          </div>
+        </div>
+      </div>
 
-		</div>
+      <!-- ========================================== -->
+      <!-- 4. TILE: PASSIONS (Chiusa di default)      -->
+      <!-- ========================================== -->
+      <div
+        class="bento-item window-tile span-2-col hidden color-passions"
+        id="passions"
+      >
+        <div class="title-bar">
+          <span class="window-title">passions.log</span>
+          <button class="close-btn close" data-target="passions">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="window-content" style="background: #F4F4F0;">
+          <h2 style="text-align: center; margin-bottom: 25px;">Passions</h2>
+          <img src="images/passions.jpg" alt="Passions" class="full-img" style="margin-bottom: 30px; box-shadow: 4px 4px 0px #1a1a1a;" />
+          <div class="grid-2-col">
+            <div class="project-card card-purple">
+              <div class="project-info">
+                <h4><i class="fa-solid fa-camera"></i> Photography</h4>
+                <p>Specializing in capturing dynamic environments and candid moments, with a strong technical focus on landscape and motorsport photography.</p>
+              </div>
+            </div>
+            <div class="project-card card-blue">
+              <div class="project-info">
+                <h4><i class="fa-solid fa-microchip"></i> Electronics</h4>
+                <p>Passionate about hardware design, circuit prototyping, and microcontroller integration. Dedicated to transforming theoretical concepts into functional physical systems.</p>
+              </div>
+            </div>
+            <div class="project-card card-green">
+              <div class="project-info">
+                <h4><i class="fa-solid fa-server"></i> Server Infrastructure</h4>
+                <p>Architecting and maintaining personal server environments. Focused on system optimization, self-hosting solutions, and continuous network improvement.</p>
+              </div>
+            </div>
+            <div class="project-card card-red">
+              <div class="project-info">
+                <h4><i class="fa-solid fa-person-snowboarding"></i> Athletic Pursuits</h4>
+                <p>Active participant in mountain biking, alpine skiing, swimming, and motorsport. These high-adrenaline activities cultivate discipline, focus, and strategic risk-assessment.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-		<!-- Footer -->
-		<footer id="footer">
-			<p class="copyright">&copy; Dylan portfolio. 2025</p>
-		</footer>
+      <!-- ========================================== -->
+      <!-- 5. TILE: CONTACTS                          -->
+      <!-- ========================================== -->
+      <div class="bento-item window-tile color-contacts" id="contacts">
+        <div class="title-bar">
+          <span class="window-title">send_message.sh</span>
+          <button class="close-btn close" data-target="contacts">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="window-content">
+          <h2>Contacts</h2>
+          <form
+            action="https://formbold.com/s/objlN"
+            method="POST"
+            class="bento-form"
+          >
+            <label>Name</label>
+            <input type="text" name="name" placeholder="Your Name" required />
 
-	</div>
+            <label>Email</label>
+            <input
+              type="email"
+              name="email"
+              placeholder="Your Email"
+              required
+            />
 
-	<!-- FW -->
-	<div class="follower"></div>
-	<!-- BG -->
-	<div id="bg"></div>
+            <label>Message</label>
+            <textarea
+              name="message"
+              rows="3"
+              placeholder="What's on your mind?"
+              required
+            ></textarea>
 
-	<!-- Scripts -->
-	<!-- Scripts font is awesome -->
-	<script src="https://kit.fontawesome.com/e7b13d838d.js" crossorigin="anonymous"></script>
+            <div class="form-actions">
+              <button type="submit" class="submit-btn send">
+                Send Message
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
 
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
-	<script src="assets/js/meme.js"></script>
+      <!-- ========================================== -->
+      <!-- 6. TILE: RICKROLL (Hidden by default)      -->
+      <!-- ========================================== -->
+      <div class="bento-item window-tile hidden color-rick" id="rickrolled">
+        <div class="title-bar">
+          <span class="window-title">SECRET.exe</span>
+          <button class="close-btn close" data-target="rickrolled">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div
+          class="window-content"
+          style="padding: 0; overflow: hidden; background: #000"
+        >
+          <iframe
+            id="rick-iframe"
+            width="100%"
+            height="100%"
+            src=""
+            title="YouTube video player"
+            frameborder="0"
+            allow="
+              accelerometer;
+              autoplay;
+              clipboard-write;
+              encrypted-media;
+              gyroscope;
+              picture-in-picture;
+              web-share;
+            "
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
 
-	<!-- Clippyjs -->
-	<!-- jQuery 1.7+ -->
-	<script src="jquery.1.7.min.js"></script>
+      <!-- ========================================== -->
+      <div class="bento-item window-tile color-terminal" id="terminal-box">
+        <div class="title-bar" style="background: #111">
+          <span class="window-title" style="color: #00ff41"
+            >root@dylan-os:~</span
+          >
+          <button class="close-btn close" data-target="terminal-box">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div
+          class="window-content"
+          id="fake-terminal"
+          style="
+            padding: 0;
+            background: #000;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+          "
+        >
+          <!-- JQuery Terminal injects here -->
+        </div>
+      </div>
+    </div>
+    <!-- Fine Grid -->
 
-	<!-- Clippy.js -->
-	<script src="clippy.js/build/clippy.min.js"></script>
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <!-- JQuery Terminal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.37.0/js/jquery.terminal.min.js"></script>
 
-	<!-- Init script -->
-	<script src="assets/js/clippy.js"></script>
-
-	<script src="assets/js/follower.js"></script>
-	</script>
-	
-	<!-- Includi Matter.js -->
-	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.17.1/matter.min.js"></script> -->
-	<!-- <script src="assets/js/sperimentation.js"></script> -->
-
-</body>
-
+    <!-- Clippy.js -->
+    <script src="clippy.js/build/clippy.min.js"></script>
+    <!-- Custom Scripts -->
+    <script src="assets/js/clippy.js"></script>
+    <script src="assets/js/meme.js"></script>
+    <script src="assets/js/bento.js"></script>
+    <script src="assets/js/terminal.js"></script>
+  </body>
 </html>
