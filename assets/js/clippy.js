@@ -77,10 +77,10 @@ clippy.load('Clippy', function(agent) {
             agent.animate('GetAttention');
         });
 
-         // --- Drag universal RINFORZATO touch/mouse clamp ---
-         (function(){
-            let clippyEl = document.querySelector('.clippy');
-            if (!clippyEl) return;
+         // --- Drag universale SOLO dopo che .clippy è disponibile! ---
+         function attachClippyDrag(){
+            var clippyEl = document.querySelector('.clippy');
+            if (!clippyEl) return false;
             clippyEl.style.position = "fixed";
             clippyEl.style.left = (window.innerWidth - clippyEl.offsetWidth - 16) + "px";
             clippyEl.style.top  = (window.innerHeight - clippyEl.offsetHeight - 16) + "px";
@@ -147,6 +147,11 @@ clippy.load('Clippy', function(agent) {
                 setTimeout(fixInViewport, 0);
             }, {passive:false});
             window.addEventListener("resize", fixInViewport);
+            return true;
+         }
+         (function waitClippy(){
+            if (attachClippyDrag()) return;
+            setTimeout(waitClippy, 250);
          })();
 
 
