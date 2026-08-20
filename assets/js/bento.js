@@ -194,4 +194,46 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
   }
+
+  const contactForm = document.querySelector(".bento-form");
+  if (contactForm) {
+    contactForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const submitButton = contactForm.querySelector(".submit-btn");
+      const originalLabel = submitButton.innerText;
+      submitButton.disabled = true;
+      submitButton.innerText = "Sending...";
+
+      const payload = new URLSearchParams({
+        name: contactForm.elements.name.value,
+        email: contactForm.elements.email.value,
+        subject: contactForm.elements.subject.value,
+        message: contactForm.elements.message.value,
+      });
+
+      try {
+        const response = await fetch(contactForm.action, {
+          method: "POST",
+          body: payload,
+          headers: { Accept: "application/json" },
+        });
+
+        if (!response.ok) throw new Error("FormBold submission failed");
+
+        contactForm.reset();
+        submitButton.innerText = "Sent Successfully!";
+        setTimeout(() => {
+          submitButton.innerText = originalLabel;
+          submitButton.disabled = false;
+        }, 3000);
+      } catch (error) {
+        submitButton.innerText = "Error! Try again.";
+        setTimeout(() => {
+          submitButton.innerText = originalLabel;
+          submitButton.disabled = false;
+        }, 3000);
+      }
+    });
+  }
 });
