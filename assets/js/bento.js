@@ -195,4 +195,51 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
+  // 4. AJAX Form Submission
+  const form = document.querySelector(".bento-form");
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const btn = form.querySelector(".submit-btn");
+      const originalText = btn.innerText;
+      btn.innerText = "Sending...";
+      btn.disabled = true;
+
+      const formData = new URLSearchParams(new FormData(form));
+      formData.set("subject", "New portfolio contact message");
+
+      fetch(form.action, {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      })
+        .then((response) => {
+          if (response.ok) {
+            btn.innerText = "Sent Successfully!";
+            btn.style.backgroundColor = "var(--accent-color)";
+            btn.style.color = "var(--border-color)";
+            form.reset();
+            setTimeout(() => {
+              btn.innerText = originalText;
+              btn.style.backgroundColor = "";
+              btn.style.color = "";
+              btn.disabled = false;
+            }, 3000);
+          } else {
+            throw new Error("Network response was not ok.");
+          }
+        })
+        .catch((error) => {
+          btn.innerText = "Error! Try again.";
+          btn.style.backgroundColor = "var(--danger-color)";
+          setTimeout(() => {
+            btn.innerText = originalText;
+            btn.style.backgroundColor = "";
+            btn.disabled = false;
+          }, 3000);
+        });
+    });
+  }
 });
