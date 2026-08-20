@@ -675,3 +675,76 @@ h1, h2, h3, h4 {
 		transform: none !important;
 	}
 }
+
+/* TABLET / SMALL LAPTOP RESPONSIVE DESKTOP SCALING */
+@media screen and (min-width: 1201px) and (max-width: 1650px) {
+    .profile-tile {
+        width: 24vw;
+        left: 2vw;
+        padding: 20px;
+        height: 85vh;
+        top: 7.5vh;
+    }
+    .profile-header .avatar {
+        width: 130px;
+        height: 130px;
+    }
+    .social-icons {
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+    .social-icons a, .social-icons button {
+        width: 40px;
+        height: 40px;
+    }
+    .bento-nav {
+        gap: 8px;
+    }
+    .bento-nav .nav-btn {
+        padding: 8px;
+        font-size: 0.85rem;
+    }
+
+    #aboutme {
+        left: 28vw;
+        width: 42vw;
+        height: 85vh;
+        top: 7.5vh;
+    }
+    #contacts {
+        left: calc(100% - 28vw);
+        width: 26vw;
+        height: 55vh;
+        top: 7.5vh;
+    }
+    #terminal-box {
+        left: calc(100% - 28vw);
+        width: 26vw;
+        height: 27.5vh;
+        top: 65vh;
+    }
+    #projects {
+        left: 30vw;
+        width: 40vw;
+        height: 80vh;
+        top: 10vh;
+    }
+    #passions {
+        left: 32vw;
+        width: 38vw;
+        height: 80vh;
+        top: 10vh;
+    }
+    #rickrolled {
+        left: 30vw;
+        width: 40vw;
+        height: 60vh;
+        top: 20vh;
+    }
+    
+    .grid-2-col {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+}
