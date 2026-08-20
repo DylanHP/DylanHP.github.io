@@ -77,80 +77,76 @@ clippy.load('Clippy', function(agent) {
             agent.animate('GetAttention');
         });
 
-         // --- Drag universal: mouse + touch, clamp e spawn always ---
+         // --- Drag universal RINFORZATO touch/mouse clamp ---
          (function(){
-            let dragging = false, dragStartX, dragStartY, startLeft, startTop, moved;
-            // Spawn sempre tutto visibile
-            function setDefaultPosition() {
-                clippyEl.style.position = "fixed";
-                clippyEl.style.left = (window.innerWidth - clippyEl.offsetWidth - 16) + "px";
-                clippyEl.style.top = (window.innerHeight - clippyEl.offsetHeight - 16) + "px";
+            let clippyEl = document.querySelector('.clippy');
+            if (!clippyEl) return;
+            clippyEl.style.position = "fixed";
+            clippyEl.style.left = (window.innerWidth - clippyEl.offsetWidth - 16) + "px";
+            clippyEl.style.top  = (window.innerHeight - clippyEl.offsetHeight - 16) + "px";
+            clippyEl.style.right = "auto";
+            clippyEl.style.bottom = "auto";
+            let drag = false, moved = false, sx = 0, sy = 0, sl = 0, st = 0;
+            function clamp(val, min, max){ return Math.max(min, Math.min(max, val)); }
+            function fixInViewport() {
+                let left = clamp(parseFloat(clippyEl.style.left||0), 0, window.innerWidth - clippyEl.offsetWidth);
+                let top  = clamp(parseFloat(clippyEl.style.top||0), 0, window.innerHeight - clippyEl.offsetHeight);
+                clippyEl.style.left = left+'px'; clippyEl.style.top = top+'px';
             }
-            setDefaultPosition();
-            function clamp(val, min, max) { return Math.max(min, Math.min(max, val)); }
-            function clampToViewport() {
-                let left = parseFloat(clippyEl.style.left||0);
-                let top = parseFloat(clippyEl.style.top||0);
-                left = clamp(left, 0, window.innerWidth - clippyEl.offsetWidth);
-                top = clamp(top, 0, window.innerHeight - clippyEl.offsetHeight);
-                clippyEl.style.left = left + "px";
-                clippyEl.style.top = top + "px";
-            }
-            function startDrag(x, y) {
-                dragging = true; moved = false;
-                dragStartX = x; dragStartY = y;
-                startLeft = parseFloat(clippyEl.style.left||0);
-                startTop = parseFloat(clippyEl.style.top||0);
-                document.body.style.userSelect = "none";
-            }
-            function moveDrag(x, y) {
-                if (!dragging) return;
-                let dx = x - dragStartX, dy = y - dragStartY;
+
+            clippyEl.addEventListener("touchstart", function(e) {
+                if (e.touches.length !== 1) return;
+                drag = true; moved = false;
+                sx = e.touches[0].clientX; sy = e.touches[0].clientY;
+                sl = parseFloat(clippyEl.style.left) || 0; st = parseFloat(clippyEl.style.top) || 0;
+            }, {passive:false});
+            clippyEl.addEventListener("touchmove", function(e){
+                if (!drag || e.touches.length !== 1) return;
+                let dx = e.touches[0].clientX - sx, dy = e.touches[0].clientY - sy;
                 if (!moved && (Math.abs(dx) > 3 || Math.abs(dy) > 3)) moved = true;
                 if (moved) {
-                    clippyEl.style.left = clamp(startLeft + dx, 0, window.innerWidth - clippyEl.offsetWidth) + "px";
-                    clippyEl.style.top = clamp(startTop + dy, 0, window.innerHeight - clippyEl.offsetHeight) + "px";
-                }
-            }
-            function endDrag() {
-                dragging = false;
-                document.body.style.userSelect = "";
-            }
-            // Touch
-            clippyEl.addEventListener("touchstart", function(e){
-                if (e.touches.length === 1) startDrag(e.touches[0].clientX, e.touches[0].clientY);
-            }, {passive:true});
-            window.addEventListener("touchmove", function(e){
-                if (dragging && e.touches.length === 1) {
-                    moveDrag(e.touches[0].clientX, e.touches[0].clientY);
-                    if (moved && e.cancelable) e.preventDefault();
+                    e.preventDefault();
+                    clippyEl.style.left = clamp(sl + dx, 0, window.innerWidth - clippyEl.offsetWidth) + "px";
+                    clippyEl.style.top  = clamp(st + dy, 0, window.innerHeight - clippyEl.offsetHeight) + "px";
                 }
             }, {passive:false});
-            window.addEventListener("touchend", function(e){
-                if (!dragging) return;
+            clippyEl.addEventListener("touchend", function(e){
+                if (!drag) return;
                 if (!moved) {
                     agent.speak("Don't touch me pls! I am busy! Give me some space!");
                     agent.animate('GetAttention');
                 }
-                endDrag();
-            });
+                drag = false; moved = false;
+                setTimeout(fixInViewport, 0);
+            }, {passive:false});
             // Mouse
             clippyEl.addEventListener("mousedown", function(e){
-                if (e.button === 0) startDrag(e.clientX, e.clientY);
-            });
+                if (e.button !== 0) return;
+                drag = true; moved = false;
+                sx = e.clientX; sy = e.clientY;
+                sl = parseFloat(clippyEl.style.left) || 0; st = parseFloat(clippyEl.style.top) || 0;
+                document.body.style.userSelect = "none";
+            }, {passive:false});
             window.addEventListener("mousemove", function(e){
-                if (dragging) moveDrag(e.clientX, e.clientY);
-            });
-            window.addEventListener("mouseup", function(e){
-                if (!dragging) return;
+                if (!drag) return;
+                let dx = e.clientX - sx, dy = e.clientY - sy;
+                if (!moved && (Math.abs(dx) > 3 || Math.abs(dy) > 3)) moved = true;
+                if (moved) {
+                    clippyEl.style.left = clamp(sl + dx, 0, window.innerWidth - clippyEl.offsetWidth) + "px";
+                    clippyEl.style.top  = clamp(st + dy, 0, window.innerHeight - clippyEl.offsetHeight) + "px";
+                }
+            }, {passive:false});
+            window.addEventListener("mouseup", function(){
+                if (!drag) return;
                 if (!moved) {
                     agent.speak("Don't touch me pls! I am busy! Give me some space!");
                     agent.animate('GetAttention');
                 }
-                endDrag();
-            });
-            window.addEventListener("resize", clampToViewport);
-            window.clippyReset = setDefaultPosition;
+                drag = false; moved = false;
+                document.body.style.userSelect = "";
+                setTimeout(fixInViewport, 0);
+            }, {passive:false});
+            window.addEventListener("resize", fixInViewport);
          })();
 
 
