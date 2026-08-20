@@ -45,6 +45,12 @@
 	color: #F4F4F0;
 	box-shadow: 1px 1px 0px #1e1e1e;
 }
+[data-theme="dark"] .title-bar .close-btn:active {
+	background: var(--danger-color);
+	color: #F4F4F0;
+	transform: translate(2px, 2px);
+	box-shadow: 0px 0px 0px #1e1e1e;
+}
 
 [data-theme="dark"] .window-content {
 	background: #1e1e1e !important;
@@ -219,13 +225,13 @@ h1, h2, h3, h4 {
 	color: var(--border-color);
 }
 
-.nav-btn:hover, .nav-btn.active {
+.nav-btn:hover {
 	background-color: var(--accent-color);
 	transform: translate(2px, 2px);
 	box-shadow: 2px 2px 0px var(--border-color);
 }
 
-.nav-btn.active {
+.nav-btn:active, .nav-btn.active {
 	background-color: #e0e0e0; /* Stato premuto */
 	box-shadow: 0px 0px 0px var(--border-color);
 	transform: translate(4px, 4px);
@@ -258,6 +264,11 @@ h1, h2, h3, h4 {
 	background: var(--accent-color);
 	transform: translate(2px, 2px);
 	box-shadow: 1px 1px 0px var(--border-color);
+}
+.social-icons a:active, .social-icons button:active {
+	background: #e0e0e0;
+	transform: translate(3px, 3px);
+	box-shadow: 0px 0px 0px var(--border-color);
 }
 
 /* 5. WINDOW TILES (Dimensioni Bento Adattive) */
@@ -317,6 +328,12 @@ h1, h2, h3, h4 {
 	color: #fff;
 	transform: translate(1px, 1px);
 	box-shadow: 1px 1px 0px #fff;
+}
+.title-bar .close-btn:active {
+	background: var(--danger-color);
+	color: #fff;
+	transform: translate(2px, 2px);
+	box-shadow: 0px 0px 0px #fff;
 }
 
 .window-content {
@@ -476,9 +493,19 @@ h1, h2, h3, h4 {
 	.bento-nav .nav-btn {
 		margin-bottom: 2px !important;
 	}
-	.bento-nav .nav-btn:hover, .bento-nav .nav-btn.active {
+	.bento-nav .nav-btn:hover {
 		transform: translate(1.5px, 1.5px) !important;
-		box-shadow: 2px 2px 0px var(--border-color) !important;
+		box-shadow: 1.5px 1.5px 0px var(--border-color) !important;
+	}
+	.bento-nav .nav-btn:active, .bento-nav .nav-btn.active {
+		transform: translate(3px, 3px) !important;
+		box-shadow: 0px 0px 0px var(--border-color) !important;
+	}
+	@media (hover: none) {
+		.bento-nav .nav-btn:hover:not(.active) {
+			transform: none !important;
+			box-shadow: 3px 3px 0px var(--border-color) !important;
+		}
 	}
 
 	/* --- FIX allineamento larghezza box & profile su mobile --- */
@@ -621,4 +648,26 @@ h1, h2, h3, h4 {
         min-height: 400px !important;
         height: 400px !important;
     }
+}
+
+/* Fix for sticky hover on touch devices */
+@media (hover: none) {
+	.nav-btn:hover:not(.active) {
+		transform: none !important;
+		box-shadow: 4px 4px 0px var(--border-color) !important;
+		background-color: var(--window-bg) !important;
+	}
+	.bento-nav .nav-btn:hover:not(.active) {
+		transform: none !important;
+		box-shadow: 3px 3px 0px var(--border-color) !important;
+		background-color: var(--window-bg) !important;
+	}
+	.social-icons a:hover, .social-icons button:hover {
+		transform: none !important;
+		box-shadow: 3px 3px 0px var(--border-color) !important;
+		background-color: var(--window-bg);
+	}
+	.title-bar .close-btn:hover {
+		transform: none !important;
+	}
 }
