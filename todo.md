@@ -1,1 +1,5 @@
-sisteìmare il respondive e il form e i contenuti e pubblicare
+- [x] sistemare il respondive
+- [x] sistemare il form
+- [x] sistemare i contenuti 
+- [x] sistemare anche il tema chiaro scuro mettere toggle nella menubar
+- [x] pubblicare

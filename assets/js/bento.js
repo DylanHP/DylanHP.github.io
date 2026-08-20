@@ -89,13 +89,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const titleBar = tile.querySelector(".title-bar");
 
     tile.addEventListener("mousedown", () => {
-      if (window.innerWidth > 980) {
+      if (window.innerWidth > 1200) {
         tile.style.zIndex = ++zIndexCounter;
       }
     });
 
     titleBar.addEventListener("mousedown", function (e) {
-      if (window.innerWidth <= 980) return;
+      if (window.innerWidth <= 1200) return;
       if (e.target.closest(".close-btn")) return;
 
       tile.style.zIndex = ++zIndexCounter;
@@ -131,4 +131,78 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   windowTiles.forEach(attachDragEvents);
+
+  // 3. THEME TOGGLE
+  const themeToggleBtn = document.getElementById("theme-toggle");
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener("click", () => {
+      const currentTheme = document.documentElement.getAttribute("data-theme");
+      const icon = themeToggleBtn.querySelector("i");
+      if (currentTheme === "dark") {
+        document.documentElement.removeAttribute("data-theme");
+        localStorage.setItem("theme", "light");
+        icon.classList.remove("fa-sun");
+        icon.classList.add("fa-moon");
+      } else {
+        document.documentElement.setAttribute("data-theme", "dark");
+        localStorage.setItem("theme", "dark");
+        icon.classList.remove("fa-moon");
+        icon.classList.add("fa-sun");
+      }
+    });
+
+    // Check for saved theme
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") {
+      document.documentElement.setAttribute("data-theme", "dark");
+      const icon = themeToggleBtn.querySelector("i");
+      icon.classList.remove("fa-moon");
+      icon.classList.add("fa-sun");
+    }
+  }
+
+  // 4. AJAX Form Submission
+  const form = document.querySelector(".bento-form");
+  if (form) {
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const btn = form.querySelector(".submit-btn");
+      const originalText = btn.innerText;
+      btn.innerText = "Sending...";
+      btn.disabled = true;
+
+      const formData = new FormData(form);
+      
+      fetch(form.action, {
+        method: "POST",
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      }).then(response => {
+        if (response.ok) {
+          btn.innerText = "Sent Successfully!";
+          btn.style.backgroundColor = "var(--accent-color)";
+          btn.style.color = "var(--border-color)";
+          form.reset();
+          setTimeout(() => {
+            btn.innerText = originalText;
+            btn.style.backgroundColor = "";
+            btn.style.color = "";
+            btn.disabled = false;
+          }, 3000);
+        } else {
+          throw new Error("Network response was not ok.");
+        }
+      }).catch(error => {
+        btn.innerText = "Error! Try again.";
+        btn.style.backgroundColor = "var(--danger-color)";
+        setTimeout(() => {
+          btn.innerText = originalText;
+          btn.style.backgroundColor = "";
+          btn.disabled = false;
+        }, 3000);
+      });
+    });
+  }
 });

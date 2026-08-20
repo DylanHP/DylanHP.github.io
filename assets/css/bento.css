@@ -19,6 +19,56 @@
 	--font-body: 'Inter', sans-serif;
 }
 
+[data-theme="dark"] {
+	--bg-color: #121212;
+	--grid-dot: #333333;
+	--window-bg: #1e1e1e;
+	--border-color: #F4F4F0;
+	--text-main: #F4F4F0;
+	--text-muted: #aaaaaa;
+	--accent-color: #9c27b0;
+	--danger-color: #ff4747;
+}
+
+[data-theme="dark"] .title-bar {
+	color: #1a1a1a;
+}
+
+[data-theme="dark"] .title-bar .close-btn {
+	background: #1e1e1e;
+	color: #F4F4F0;
+	border-color: #F4F4F0;
+	box-shadow: 2px 2px 0px #1e1e1e;
+}
+[data-theme="dark"] .title-bar .close-btn:hover {
+	background: var(--danger-color);
+	color: #F4F4F0;
+	box-shadow: 1px 1px 0px #1e1e1e;
+}
+
+[data-theme="dark"] .window-content {
+	background: #1e1e1e !important;
+}
+
+[data-theme="dark"] .project-card { background: #2d2d2d; }
+
+[data-theme="dark"] .color-profile { background-color: #3b301a !important; }
+[data-theme="dark"] .color-aboutme { background-color: #2b254a !important; }
+[data-theme="dark"] .color-projects { background-color: #1a2a40 !important; }
+[data-theme="dark"] .color-passions { background-color: #4a2d1d !important; }
+[data-theme="dark"] .color-contacts { background-color: #163636 !important; }
+[data-theme="dark"] .color-rick { background-color: #4a1c26 !important; }
+
+[data-theme="dark"] .nav-btn.aboutme.active { background-color: #2b254a !important; }
+[data-theme="dark"] .nav-btn.projects.active { background-color: #1a2a40 !important; }
+[data-theme="dark"] .nav-btn.passions.active { background-color: #4a2d1d !important; }
+[data-theme="dark"] .nav-btn.contacts.active { background-color: #163636 !important; }
+
+[data-theme="dark"] .card-blue { background-color: #152030; }
+[data-theme="dark"] .card-green { background-color: #152b1a; }
+[data-theme="dark"] .card-purple { background-color: #261836; }
+[data-theme="dark"] .card-red { background-color: #301715; }
+
 /* PALETTE COLORI RETRO-TECH */
 .color-profile { background-color: #FFF3C7 !important; } /* Giallo Pallido */
 .color-aboutme { background-color: #E6E6FA !important; } /* Lavanda */
@@ -406,7 +456,7 @@ h1, h2, h3, h4 {
 }
 
 /* 7. RESPONSIVE DESIGN (Per mobile trasformiamo in lista scrollabile per usabilità) */
-@media screen and (max-width: 980px) {
+@media screen and (max-width: 1200px) {
 	/* Clippy sempre visibile anche su mobile (rimosse regole che lo nascondono) */
 	/* Le finestrelle ora si espandono sempre a pieno contenuto su mobile, senza limiti nè scrollbar interne! */
 	.window-tile {
@@ -565,3 +615,10 @@ h1, h2, h3, h4 {
 }
 
 /* Fix for Clippy inside the box */
+
+@media screen and (max-width: 1200px) {
+    #terminal-box, #fake-terminal {
+        min-height: 400px !important;
+        height: 400px !important;
+    }
+}
