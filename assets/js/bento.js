@@ -151,14 +151,33 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // Check for saved theme
+    // Check for saved theme or system preference
     const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "dark") {
+    const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (savedTheme === "dark" || (!savedTheme && systemPrefersDark)) {
       document.documentElement.setAttribute("data-theme", "dark");
       const icon = themeToggleBtn.querySelector("i");
       icon.classList.remove("fa-moon");
       icon.classList.add("fa-sun");
     }
+    
+    // Listen for system theme changes if no user preference is saved
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+      if (!localStorage.getItem("theme")) {
+        const newColorScheme = event.matches ? "dark" : "light";
+        const icon = themeToggleBtn.querySelector("i");
+        if (newColorScheme === "dark") {
+          document.documentElement.setAttribute("data-theme", "dark");
+          icon.classList.remove("fa-moon");
+          icon.classList.add("fa-sun");
+        } else {
+          document.documentElement.removeAttribute("data-theme");
+          icon.classList.remove("fa-sun");
+          icon.classList.add("fa-moon");
+        }
+      }
+    });
   }
 
   // 4. AJAX Form Submission

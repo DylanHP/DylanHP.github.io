@@ -473,10 +473,10 @@ h1, h2, h3, h4 {
 	.bento-nav {
 		gap: 15px !important;
 	}
-	.nav-btn {
+	.bento-nav .nav-btn {
 		margin-bottom: 2px !important;
 	}
-	.nav-btn:hover, .nav-btn.active {
+	.bento-nav .nav-btn:hover, .bento-nav .nav-btn.active {
 		transform: translate(1.5px, 1.5px) !important;
 		box-shadow: 2px 2px 0px var(--border-color) !important;
 	}
@@ -510,7 +510,7 @@ h1, h2, h3, h4 {
 		margin-top: 10px !important;
 		align-items: stretch !important;
 	}
-	.nav-btn {
+	.bento-nav .nav-btn {
 		border-radius: 8px !important;
 		padding: 10px 4px !important;
 		font-size: 0.98rem !important;
@@ -571,7 +571,7 @@ h1, h2, h3, h4 {
 		.bento-nav {
 			gap: 5px !important;
 		}
-		.nav-btn {
+		.bento-nav .nav-btn {
 			padding: 6px !important;
 			font-size: 0.9rem !important;
 		}
