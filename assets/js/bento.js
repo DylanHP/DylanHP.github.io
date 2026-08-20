@@ -68,6 +68,14 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
       const targetId = btn.getAttribute("data-target");
       toggleTile(targetId);
+
+      // On mobile, scroll to the newly opened tile so the user sees it
+      if (window.innerWidth <= 1200) {
+        const tile = document.getElementById(targetId);
+        if (tile && !tile.classList.contains("hidden")) {
+          setTimeout(() => tile.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+        }
+      }
     });
   });
 

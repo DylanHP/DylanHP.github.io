@@ -644,9 +644,13 @@ h1, h2, h3, h4 {
 /* Fix for Clippy inside the box */
 
 @media screen and (max-width: 1200px) {
-    #terminal-box, #fake-terminal {
+    #terminal-box {
         min-height: 400px !important;
         height: 400px !important;
+    }
+    #fake-terminal {
+        height: auto !important;
+        flex-grow: 1 !important;
     }
 }
 

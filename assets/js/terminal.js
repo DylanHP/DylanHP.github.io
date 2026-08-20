@@ -80,7 +80,13 @@ $(document).ready(function () {
       if (mutation.target.classList.contains("hidden")) {
         $("#fake-terminal").terminal().disable(); // Disabilita quando nascosto
       } else {
-        $("#fake-terminal").terminal().enable().focus(); // Abilita quando aperto
+        const term = $("#fake-terminal").terminal();
+        term.enable(); // Abilita quando aperto
+        
+        // Non forzare il focus su mobile per evitare che la tastiera appaia da sola e faccia saltare la pagina
+        if (window.innerWidth > 1200) {
+          term.focus();
+        }
       }
     });
   });
