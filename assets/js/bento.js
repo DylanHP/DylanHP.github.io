@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const rickFrame = document.getElementById("rick-iframe");
         if (rickFrame) {
           rickFrame.src =
-            "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?rel=0";
+            "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0";
         }
       }
     } else {
@@ -146,53 +146,24 @@ document.addEventListener("DOMContentLoaded", () => {
   // 3. THEME TOGGLE
   const themeToggleBtn = document.getElementById("theme-toggle");
   if (themeToggleBtn) {
-    themeToggleBtn.addEventListener("click", () => {
-      const currentTheme = document.documentElement.getAttribute("data-theme");
+    const colorScheme = window.matchMedia("(prefers-color-scheme: dark)");
+
+    function applySystemTheme() {
+      const prefersDark = colorScheme.matches;
       const icon = themeToggleBtn.querySelector("i");
-      if (currentTheme === "dark") {
-        document.documentElement.removeAttribute("data-theme");
-        localStorage.setItem("theme", "light");
-        icon.classList.remove("fa-sun");
-        icon.classList.add("fa-moon");
-      } else {
+      if (prefersDark) {
         document.documentElement.setAttribute("data-theme", "dark");
-        localStorage.setItem("theme", "dark");
-        icon.classList.remove("fa-moon");
-        icon.classList.add("fa-sun");
+        icon.classList.replace("fa-moon", "fa-sun");
+      } else {
+        document.documentElement.removeAttribute("data-theme");
+        icon.classList.replace("fa-sun", "fa-moon");
       }
-    });
-
-    // Check for saved theme or system preference
-    const savedTheme = localStorage.getItem("theme");
-    const systemPrefersDark =
-      window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-    if (savedTheme === "dark" || (!savedTheme && systemPrefersDark)) {
-      document.documentElement.setAttribute("data-theme", "dark");
-      const icon = themeToggleBtn.querySelector("i");
-      icon.classList.remove("fa-moon");
-      icon.classList.add("fa-sun");
     }
 
-    // Listen for system theme changes if no user preference is saved
-    window
-      .matchMedia("(prefers-color-scheme: dark)")
-      .addEventListener("change", (event) => {
-        if (!localStorage.getItem("theme")) {
-          const newColorScheme = event.matches ? "dark" : "light";
-          const icon = themeToggleBtn.querySelector("i");
-          if (newColorScheme === "dark") {
-            document.documentElement.setAttribute("data-theme", "dark");
-            icon.classList.remove("fa-moon");
-            icon.classList.add("fa-sun");
-          } else {
-            document.documentElement.removeAttribute("data-theme");
-            icon.classList.remove("fa-sun");
-            icon.classList.add("fa-moon");
-          }
-        }
-      });
+    localStorage.removeItem("theme");
+    applySystemTheme();
+    colorScheme.addEventListener("change", applySystemTheme);
+    themeToggleBtn.addEventListener("click", applySystemTheme);
   }
 
   const contactForm = document.querySelector(".bento-form");
