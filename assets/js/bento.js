@@ -38,10 +38,10 @@ document.addEventListener("DOMContentLoaded", () => {
       // Sta chiudendo
       tile.classList.add("hidden");
       if (btn) {
-  btn.classList.remove("active");
-  btn.blur();
-  setTimeout(() => btn.blur(), 10); // Fix per mobile che mantiene :active
-}
+        btn.classList.remove("active");
+        btn.blur();
+        setTimeout(() => btn.blur(), 10); // Fix per mobile che mantiene :active
+      }
 
       // Ferma l'audio del Rickroll quando chiudi la finestra
       if (targetId === "rickrolled") {
@@ -73,7 +73,10 @@ document.addEventListener("DOMContentLoaded", () => {
       if (window.innerWidth <= 1200) {
         const tile = document.getElementById(targetId);
         if (tile && !tile.classList.contains("hidden")) {
-          setTimeout(() => tile.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+          setTimeout(
+            () => tile.scrollIntoView({ behavior: "smooth", block: "start" }),
+            50,
+          );
         }
       }
     });
@@ -161,75 +164,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Check for saved theme or system preference
     const savedTheme = localStorage.getItem("theme");
-    const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
+    const systemPrefersDark =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+
     if (savedTheme === "dark" || (!savedTheme && systemPrefersDark)) {
       document.documentElement.setAttribute("data-theme", "dark");
       const icon = themeToggleBtn.querySelector("i");
       icon.classList.remove("fa-moon");
       icon.classList.add("fa-sun");
     }
-    
+
     // Listen for system theme changes if no user preference is saved
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-      if (!localStorage.getItem("theme")) {
-        const newColorScheme = event.matches ? "dark" : "light";
-        const icon = themeToggleBtn.querySelector("i");
-        if (newColorScheme === "dark") {
-          document.documentElement.setAttribute("data-theme", "dark");
-          icon.classList.remove("fa-moon");
-          icon.classList.add("fa-sun");
-        } else {
-          document.documentElement.removeAttribute("data-theme");
-          icon.classList.remove("fa-sun");
-          icon.classList.add("fa-moon");
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (event) => {
+        if (!localStorage.getItem("theme")) {
+          const newColorScheme = event.matches ? "dark" : "light";
+          const icon = themeToggleBtn.querySelector("i");
+          if (newColorScheme === "dark") {
+            document.documentElement.setAttribute("data-theme", "dark");
+            icon.classList.remove("fa-moon");
+            icon.classList.add("fa-sun");
+          } else {
+            document.documentElement.removeAttribute("data-theme");
+            icon.classList.remove("fa-sun");
+            icon.classList.add("fa-moon");
+          }
         }
-      }
-    });
-  }
-
-  // 4. AJAX Form Submission
-  const form = document.querySelector(".bento-form");
-  if (form) {
-    form.addEventListener("submit", function(e) {
-      e.preventDefault();
-      const btn = form.querySelector(".submit-btn");
-      const originalText = btn.innerText;
-      btn.innerText = "Sending...";
-      btn.disabled = true;
-
-      const formData = new FormData(form);
-      
-      fetch(form.action, {
-        method: "POST",
-        body: formData,
-        headers: {
-          'Accept': 'application/json'
-        }
-      }).then(response => {
-        if (response.ok) {
-          btn.innerText = "Sent Successfully!";
-          btn.style.backgroundColor = "var(--accent-color)";
-          btn.style.color = "var(--border-color)";
-          form.reset();
-          setTimeout(() => {
-            btn.innerText = originalText;
-            btn.style.backgroundColor = "";
-            btn.style.color = "";
-            btn.disabled = false;
-          }, 3000);
-        } else {
-          throw new Error("Network response was not ok.");
-        }
-      }).catch(error => {
-        btn.innerText = "Error! Try again.";
-        btn.style.backgroundColor = "var(--danger-color)";
-        setTimeout(() => {
-          btn.innerText = originalText;
-          btn.style.backgroundColor = "";
-          btn.disabled = false;
-        }, 3000);
       });
-    });
   }
+
 });
