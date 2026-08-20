@@ -51,10 +51,19 @@ clippy.load('Clippy', function(agent) {
     let clippyEl = document.querySelector('.clippy');
     if (clippyEl) {
         clippyEl.style.position = 'fixed';
-        clippyEl.style.left = '120px';  // Sotto il profilo
-        clippyEl.style.bottom = '40px'; 
-        clippyEl.style.right = 'auto';  // Rimuoviamo l'ancoraggio a destra
         clippyEl.style.zIndex = 9999;
+        
+        if (window.innerWidth <= 1200) {
+            // Mobile: bottom-right corner
+            clippyEl.style.right = '10px';
+            clippyEl.style.bottom = '10px';
+            clippyEl.style.left = 'auto';
+        } else {
+            // Desktop: near the menu
+            clippyEl.style.left = '120px';
+            clippyEl.style.bottom = '40px'; 
+            clippyEl.style.right = 'auto';
+        }
         
         clippyEl.addEventListener('click', function(e) {
             agent.speak("Don't touch me pls! I am busy! Give me some space!");

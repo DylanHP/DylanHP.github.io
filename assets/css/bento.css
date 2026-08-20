@@ -40,10 +40,12 @@
 	border-color: #F4F4F0;
 	box-shadow: 2px 2px 0px #1e1e1e;
 }
-[data-theme="dark"] .title-bar .close-btn:hover {
-	background: var(--danger-color);
-	color: #F4F4F0;
-	box-shadow: 1px 1px 0px #1e1e1e;
+@media (hover: hover) {
+	[data-theme="dark"] .title-bar .close-btn:hover {
+		background: var(--danger-color);
+		color: #F4F4F0;
+		box-shadow: 1px 1px 0px #1e1e1e;
+	}
 }
 [data-theme="dark"] .title-bar .close-btn:active {
 	background: var(--danger-color);
@@ -225,10 +227,12 @@ h1, h2, h3, h4 {
 	color: var(--border-color);
 }
 
-.nav-btn:hover {
-	background-color: var(--accent-color);
-	transform: translate(2px, 2px);
-	box-shadow: 2px 2px 0px var(--border-color);
+@media (hover: hover) {
+	.nav-btn:hover {
+		background-color: var(--accent-color);
+		transform: translate(2px, 2px);
+		box-shadow: 2px 2px 0px var(--border-color);
+	}
 }
 
 .nav-btn:active, .nav-btn.active {
@@ -248,22 +252,24 @@ h1, h2, h3, h4 {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: 45px;
-	height: 45px;
+	width: 40px; /* Ridotto da 45 a 40 */
+	height: 40px; /* Ridotto da 45 a 40 */
 	border: 2px solid var(--border-color);
 	border-radius: 8px;
 	background: var(--window-bg);
 	color: var(--border-color);
-	font-size: 1.5rem;
+	font-size: 1.2rem; /* Ridotto da 1.5 a 1.2 */
 	box-shadow: 3px 3px 0px var(--border-color);
 	text-decoration: none;
 	cursor: pointer;
 	padding: 0;
 }
-.social-icons a:hover, .social-icons button:hover {
-	background: var(--accent-color);
-	transform: translate(2px, 2px);
-	box-shadow: 1px 1px 0px var(--border-color);
+@media (hover: hover) {
+	.social-icons a:hover, .social-icons button:hover {
+		background: var(--accent-color);
+		transform: translate(2px, 2px);
+		box-shadow: 1px 1px 0px var(--border-color);
+	}
 }
 .social-icons a:active, .social-icons button:active {
 	background: #e0e0e0;
@@ -323,11 +329,13 @@ h1, h2, h3, h4 {
 	box-shadow: 2px 2px 0px #fff;
 	transition: all 0.1s;
 }
-.title-bar .close-btn:hover {
-	background: var(--danger-color);
-	color: #fff;
-	transform: translate(1px, 1px);
-	box-shadow: 1px 1px 0px #fff;
+@media (hover: hover) {
+	.title-bar .close-btn:hover {
+		background: var(--danger-color);
+		color: #fff;
+		transform: translate(1px, 1px);
+		box-shadow: 1px 1px 0px #fff;
+	}
 }
 .title-bar .close-btn:active {
 	background: var(--danger-color);
@@ -390,9 +398,11 @@ h1, h2, h3, h4 {
 	overflow: hidden;
 	transition: transform 0.1s;
 }
-.project-card:hover {
-	transform: translate(-2px, -2px);
-	box-shadow: 6px 6px 0px var(--border-color);
+@media (hover: hover) {
+	.project-card:hover {
+		transform: translate(-2px, -2px);
+		box-shadow: 6px 6px 0px var(--border-color);
+	}
 }
 
 /* Colori Pastello per le Mini-Card interne */
@@ -467,9 +477,15 @@ h1, h2, h3, h4 {
 	box-shadow: 4px 4px 0px var(--accent-color);
 	transition: all 0.1s;
 }
-.submit-btn:hover {
-	transform: translate(2px, 2px);
-	box-shadow: 2px 2px 0px var(--accent-color);
+@media (hover: hover) {
+	.submit-btn:hover {
+		transform: translate(2px, 2px);
+		box-shadow: 2px 2px 0px var(--accent-color);
+	}
+}
+.submit-btn:active {
+	transform: translate(4px, 4px);
+	box-shadow: 0px 0px 0px var(--accent-color);
 }
 
 /* 7. RESPONSIVE DESIGN (Per mobile trasformiamo in lista scrollabile per usabilità) */
@@ -493,9 +509,11 @@ h1, h2, h3, h4 {
 	.bento-nav .nav-btn {
 		margin-bottom: 2px !important;
 	}
-	.bento-nav .nav-btn:hover {
-		transform: translate(1.5px, 1.5px) !important;
-		box-shadow: 1.5px 1.5px 0px var(--border-color) !important;
+	@media (hover: hover) {
+		.bento-nav .nav-btn:hover {
+			transform: translate(1.5px, 1.5px) !important;
+			box-shadow: 1.5px 1.5px 0px var(--border-color) !important;
+		}
 	}
 	.bento-nav .nav-btn:active, .bento-nav .nav-btn.active {
 		transform: translate(3px, 3px) !important;
@@ -654,28 +672,6 @@ h1, h2, h3, h4 {
     }
 }
 
-/* Fix for sticky hover on touch devices */
-@media (hover: none) {
-	.nav-btn:hover:not(.active) {
-		transform: none !important;
-		box-shadow: 4px 4px 0px var(--border-color) !important;
-		background-color: var(--window-bg) !important;
-	}
-	.bento-nav .nav-btn:hover:not(.active) {
-		transform: none !important;
-		box-shadow: 3px 3px 0px var(--border-color) !important;
-		background-color: var(--window-bg) !important;
-	}
-	.social-icons a:hover, .social-icons button:hover {
-		transform: none !important;
-		box-shadow: 3px 3px 0px var(--border-color) !important;
-		background-color: var(--window-bg);
-	}
-	.title-bar .close-btn:hover {
-		transform: none !important;
-	}
-}
-
 /* TABLET / SMALL LAPTOP RESPONSIVE DESKTOP SCALING */
 @media screen and (min-width: 1201px) and (max-width: 1650px) {
     .profile-tile {
@@ -747,4 +743,9 @@ h1, h2, h3, h4 {
         flex-direction: column;
         gap: 15px;
     }
+}
+
+/* Make clippy draggable on touch devices without scrolling the page */
+.clippy {
+    touch-action: none;
 }
