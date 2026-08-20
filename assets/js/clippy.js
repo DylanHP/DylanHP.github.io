@@ -53,61 +53,90 @@ clippy.load('Clippy', function(agent) {
         clippyEl.style.position = 'fixed';
         clippyEl.style.zIndex = 9999;
         
-        if (window.innerWidth <= 1200) {
-            // Mobile: bottom-right corner
-            clippyEl.style.right = '10px';
-            clippyEl.style.bottom = '10px';
-            clippyEl.style.left = 'auto';
-        } else {
-            // Desktop: near the menu
-            clippyEl.style.left = '120px';
-            clippyEl.style.bottom = '40px'; 
-            clippyEl.style.right = 'auto';
-        }
+        // Default: bottom right corner fully visible, both mobile and desktop
+        clippyEl.style.right = '16px';
+        clippyEl.style.bottom = '16px';
+        clippyEl.style.left = 'auto';
+        clippyEl.style.top = 'auto';
         
         clippyEl.addEventListener('click', function(e) {
             agent.speak("Don't touch me pls! I am busy! Give me some space!");
             agent.animate('GetAttention');
         });
 
-        // Touch drag support for mobile
-        let isDragging = false;
-        let startX, startY, initialLeft, initialTop;
+        // Drag support: touch and mouse (viewport clamp, delta handling, no jump)
+        let dragType = null;
+        let dragStartX, dragStartY, elemStartLeft, elemStartTop;
+        let dragHasMoved = false;
 
-        clippyEl.addEventListener('touchstart', function(e) {
-            isDragging = true;
-            let rect = clippyEl.getBoundingClientRect();
-            initialLeft = rect.left;
-            initialTop = rect.top;
-            
-            // Convert to top/left positioning for dragging
-            clippyEl.style.bottom = 'auto';
+        function clamp(val, min, max) {
+            return Math.max(min, Math.min(max, val));
+        }
+        function getClippyDims() {
+            const rect = clippyEl.getBoundingClientRect();
+            return { width: rect.width, height: rect.height };
+        }
+        function getViewportDims() {
+            return { width: window.innerWidth, height: window.innerHeight };
+        }
+
+        // Start drag universal
+        function dragStart(x, y, type) {
+            dragType = type;
+            dragStartX = x;
+            dragStartY = y;
+            const rect = clippyEl.getBoundingClientRect();
+            elemStartLeft = rect.left;
+            elemStartTop = rect.top;
+            // Fix style
             clippyEl.style.right = 'auto';
-            clippyEl.style.top = initialTop + 'px';
-            clippyEl.style.left = initialLeft + 'px';
-
-            startX = e.touches[0].clientX;
-            startY = e.touches[0].clientY;
+            clippyEl.style.bottom = 'auto';
+            clippyEl.style.left = elemStartLeft + 'px';
+            clippyEl.style.top = elemStartTop + 'px';
+            dragHasMoved = false;
+        }
+        
+        // Drag move universal
+        function dragMove(x, y) {
+            const dx = x - dragStartX;
+            const dy = y - dragStartY;
+            const dims = getClippyDims();
+            const vp = getViewportDims();
+            let newLeft = clamp(elemStartLeft + dx, 2, vp.width - dims.width - 2);
+            let newTop  = clamp(elemStartTop + dy, 2, vp.height - dims.height - 2);
+            clippyEl.style.left = newLeft + 'px';
+            clippyEl.style.top  = newTop  + 'px';
+            dragHasMoved = Math.abs(dx) > 5 || Math.abs(dy) > 5;
+        }
+        // End drag universal
+        function dragEnd(e) {
+            dragType = null;
+        }
+        // Touch events
+        clippyEl.addEventListener('touchstart', function(e) {
+            if (e.touches.length !== 1) return;
+            dragStart(e.touches[0].clientX, e.touches[0].clientY, 'touch');
         }, { passive: true });
-
-        document.addEventListener('touchmove', function(e) {
-            if (!isDragging) return;
-            
-            let currentX = e.touches[0].clientX;
-            let currentY = e.touches[0].clientY;
-            
-            let dx = currentX - startX;
-            let dy = currentY - startY;
-            
-            if (Math.abs(dx) > 5 || Math.abs(dy) > 5) {
-                clippyEl.style.left = (initialLeft + dx) + 'px';
-                clippyEl.style.top = (initialTop + dy) + 'px';
-                if (e.cancelable) e.preventDefault();
-            }
+        window.addEventListener('touchmove', function(e) {
+            if (dragType !== 'touch' || e.touches.length !== 1) return;
+            dragMove(e.touches[0].clientX, e.touches[0].clientY);
+            if (dragHasMoved && e.cancelable) e.preventDefault();
         }, { passive: false });
-
-        document.addEventListener('touchend', function() {
-            isDragging = false;
+        window.addEventListener('touchend', function(e) {
+            if (dragType === 'touch') dragEnd(e);
+        });
+        // Mouse events
+        clippyEl.addEventListener('mousedown', function(e) {
+            if (e.button !== 0) return;
+            dragStart(e.clientX, e.clientY, 'mouse');
+            e.preventDefault();
+        });
+        window.addEventListener('mousemove', function(e) {
+            if (dragType !== 'mouse') return;
+            dragMove(e.clientX, e.clientY);
+        });
+        window.addEventListener('mouseup', function(e) {
+            if (dragType === 'mouse') dragEnd(e);
         });
     }
 });
