@@ -209,9 +209,11 @@ body {
   background-image: radial-gradient(var(--grid-dot) 1.5px, transparent 1.5px);
   background-size: 24px 24px;
   overflow: hidden; /* NIENTE PIU SCROLLING */
-  height: 100vh;
-  width: 100vw;
+  height: 100dvh;
+  width: 100%;
   line-height: 1.6;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 a {
@@ -244,7 +246,7 @@ h4 {
   width: 100%;
   max-width: 1640px; /* Misura intermedia "perfetta" */
   margin: 0 auto;
-  height: 100vh;
+  height: 100dvh;
   display: block;
   padding: 0 20px;
 }
@@ -414,13 +416,13 @@ h4 {
   padding: 0;
   height: auto; /* Si adatta automaticamente alla quantità di testo! */
   max-width: calc(100vw - 80px) !important; /* MAI più larga dello schermo */
-  max-height: calc(100vh - 80px) !important; /* MAI più alta dello schermo */
+  max-height: calc(100dvh - 80px) !important; /* MAI più alta dello schermo */
 }
 
 /* GRIGLIA DI PARTENZA ORDINATA E CENTRATA (Altezza: 820px) */
 /* Colonna 2: About Me (Grandezza intermedia) */
 #aboutme {
-  top: max(20px, calc(50vh - 410px));
+  top: max(20px, calc(50dvh - 410px));
   left: 420px;
   width: 750px;
   height: 820px;
@@ -428,13 +430,13 @@ h4 {
 
 /* Colonna 3: Contacts e Terminale (Spazio proporzionato) */
 #contacts {
-  top: max(20px, calc(50vh - 410px));
+  top: max(20px, calc(50dvh - 410px));
   left: calc(100% - 450px);
   width: 430px;
   height: 550px;
 }
 #terminal-box {
-  top: max(590px, calc(50vh + 160px));
+  top: max(590px, calc(50dvh + 160px));
   left: calc(100% - 450px);
   width: 430px;
   height: 250px;
@@ -442,17 +444,17 @@ h4 {
 
 /* Le altre finestre mantengono un leggero sfalsamento se aperte dopo */
 #projects {
-  top: max(60px, calc(50vh - 335px));
+  top: max(60px, calc(50dvh - 335px));
   left: 450px;
   width: 800px;
 }
 #passions {
-  top: max(100px, calc(50vh - 295px));
+  top: max(100px, calc(50dvh - 295px));
   left: 480px;
   width: 750px;
 }
 #rickrolled {
-  top: max(140px, calc(50vh - 255px));
+  top: max(140px, calc(50dvh - 255px));
   left: 430px;
   width: 550px;
   height: auto;
@@ -509,6 +511,7 @@ h4 {
   padding: 25px;
   flex-grow: 1;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   min-height: 0; /* Fondamentale per far funzionare lo scroll dentro un flex container con max-height */
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -805,6 +808,7 @@ h4 {
 
   body {
     overflow: auto; /* Riattiva lo scroll su mobile */
+    -webkit-overflow-scrolling: touch;
     height: auto;
   }
   .bento-grid {
@@ -853,7 +857,8 @@ h4 {
     height: 400px !important;
   }
   #fake-terminal {
-    height: auto !important;
+    height: 100% !important;
+    overflow-y: auto !important;
     flex-grow: 1 !important;
   }
 }
@@ -864,7 +869,7 @@ h4 {
     width: 24vw;
     left: 2vw;
     padding: 20px;
-    height: 90vh;
+    height: 90dvh;
     top: 50%;
     transform: translateY(-50%);
   }
@@ -892,40 +897,40 @@ h4 {
   #aboutme {
     left: 28vw;
     width: 42vw;
-    height: 90vh;
-    top: 5vh;
+    height: 90dvh;
+    top: 5dvh;
   }
   #contacts {
     left: calc(100% - 28vw);
     width: 26vw;
-    height: 62vh;
-    top: 5vh;
+    height: 62dvh;
+    top: 5dvh;
   }
   #terminal-box {
     left: calc(100% - 28vw);
     width: 26vw;
-    height: 23vh;
+    height: 23dvh;
     top: auto;
-    bottom: 5vh;
+    bottom: 5dvh;
   }
   #projects {
     left: 30vw;
     width: 40vw;
-    height: 80vh;
-    top: 10vh;
+    height: 80dvh;
+    top: 10dvh;
   }
   #passions {
     left: 32vw;
     width: 38vw;
-    height: 80vh;
-    top: 10vh;
+    height: 80dvh;
+    top: 10dvh;
   }
   #rickrolled {
     left: 30vw;
     width: 40vw;
     height: auto;
     aspect-ratio: 4 / 3;
-    top: 20vh;
+    top: 20dvh;
   }
 
   .grid-2-col {
