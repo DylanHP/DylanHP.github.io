@@ -148,22 +148,62 @@ document.addEventListener("DOMContentLoaded", () => {
   if (themeToggleBtn) {
     const colorScheme = window.matchMedia("(prefers-color-scheme: dark)");
 
-    function applySystemTheme() {
-      const prefersDark = colorScheme.matches;
+    function updateIcon(isDark) {
       const icon = themeToggleBtn.querySelector("i");
-      if (prefersDark) {
-        document.documentElement.setAttribute("data-theme", "dark");
-        icon.classList.replace("fa-moon", "fa-sun");
+      if (isDark) {
+        icon.classList.remove("fa-moon");
+        icon.classList.add("fa-sun");
       } else {
-        document.documentElement.removeAttribute("data-theme");
-        icon.classList.replace("fa-sun", "fa-moon");
+        icon.classList.remove("fa-sun");
+        icon.classList.add("fa-moon");
       }
     }
 
-    localStorage.removeItem("theme");
-    applySystemTheme();
-    colorScheme.addEventListener("change", applySystemTheme);
-    themeToggleBtn.addEventListener("click", applySystemTheme);
+    function initTheme() {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "dark") {
+        document.documentElement.setAttribute("data-theme", "dark");
+        updateIcon(true);
+      } else if (savedTheme === "light") {
+        document.documentElement.removeAttribute("data-theme");
+        updateIcon(false);
+      } else {
+        const prefersDark = colorScheme.matches;
+        if (prefersDark) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        } else {
+          document.documentElement.removeAttribute("data-theme");
+        }
+        updateIcon(prefersDark);
+      }
+    }
+
+    initTheme();
+
+    // Ascolta i cambiamenti di sistema se non c'è un tema salvato manualmente
+    colorScheme.addEventListener("change", (e) => {
+      if (!localStorage.getItem("theme")) {
+        if (e.matches) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        } else {
+          document.documentElement.removeAttribute("data-theme");
+        }
+        updateIcon(e.matches);
+      }
+    });
+
+    themeToggleBtn.addEventListener("click", () => {
+      const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+      if (isDark) {
+        document.documentElement.removeAttribute("data-theme");
+        localStorage.setItem("theme", "light");
+        updateIcon(false);
+      } else {
+        document.documentElement.setAttribute("data-theme", "dark");
+        localStorage.setItem("theme", "dark");
+        updateIcon(true);
+      }
+    });
   }
 
   const contactForm = document.querySelector(".bento-form");

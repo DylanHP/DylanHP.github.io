@@ -83,7 +83,12 @@
 }
 
 [data-theme="dark"] .bento-form input,
+a, button, input, textarea, .nav-btn, .close-btn, .theme-btn {
+  touch-action: manipulation;
+}
+
 [data-theme="dark"] .bento-form textarea {
+  touch-action: manipulation;
   color: var(--text-main);
 }
 
@@ -216,7 +221,12 @@ body {
   word-wrap: break-word;
 }
 
+a, button, input, textarea, .nav-btn, .close-btn, .theme-btn {
+  touch-action: manipulation;
+}
+
 a {
+  touch-action: manipulation;
   color: var(--text-main);
   text-decoration: underline;
   text-decoration-thickness: 2px;
@@ -302,7 +312,8 @@ h4 {
   left: 20px;
   z-index: 99999;
   resize: none;
-  overflow: hidden; /* Rimosso lo scroll: il contenuto è stato ottimizzato per starci esattamente */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .profile-header {
@@ -381,6 +392,7 @@ h4 {
 }
 .social-icons a,
 .social-icons button {
+  touch-action: manipulation;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -622,8 +634,14 @@ h4 {
   font-family: var(--font-title);
 }
 .bento-form input,
+a, button, input, textarea, .nav-btn, .close-btn, .theme-btn {
+  touch-action: manipulation;
+}
+
 .bento-form textarea {
+  touch-action: manipulation;
   width: 100%;
+  font-size: 16px !important;
   padding: 12px;
   border: 2px solid var(--border-color);
   border-radius: 8px;
@@ -631,7 +649,12 @@ h4 {
   font-family: var(--font-body);
   outline: none;
 }
+a, button, input, textarea, .nav-btn, .close-btn, .theme-btn {
+  touch-action: manipulation;
+}
+
 .bento-form textarea {
+  touch-action: manipulation;
   resize: none !important; /* Impedisce di deformare il form internamente, usa il resize della finestra! */
 }
 .bento-form input:focus,
@@ -784,6 +807,7 @@ h4 {
   }
   .social-icons a,
   .social-icons button {
+  touch-action: manipulation;
     width: 38px !important;
     height: 38px !important;
     font-size: 1.1rem !important;
@@ -883,6 +907,7 @@ h4 {
   }
   .social-icons a,
   .social-icons button {
+  touch-action: manipulation;
     width: 40px;
     height: 40px;
   }
