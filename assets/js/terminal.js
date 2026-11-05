@@ -3,9 +3,14 @@
  * Uses jQuery Terminal Emulator
  */
 
-$(document).ready(function () {
+document.addEventListener("DOMContentLoaded", () => {
+  const terminal = document.getElementById("fake-terminal");
+  const $ = window.jQuery;
+  if (!terminal || !$ || typeof $.fn.terminal !== "function") return;
+
+  terminal.textContent = "";
   // Inizializza il terminale dentro il div #fake-terminal
-  $("#fake-terminal").terminal(
+  const term = $(terminal).terminal(
     {
       help: function () {
         this.echo("Available commands:");
@@ -78,11 +83,10 @@ $(document).ready(function () {
   const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       if (mutation.target.classList.contains("hidden")) {
-        $("#fake-terminal").terminal().disable(); // Disabilita quando nascosto
+        term.disable(); // Disabilita quando nascosto
       } else {
-        const term = $("#fake-terminal").terminal();
         term.enable(); // Abilita quando aperto
-        
+
         // Non forzare il focus su mobile per evitare che la tastiera appaia da sola e faccia saltare la pagina
         if (window.innerWidth > 1200) {
           term.focus();

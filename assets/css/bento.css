@@ -82,16 +82,6 @@
   background: #163636 !important;
 }
 
-[data-theme="dark"] .bento-form input,
-a, button, input, textarea, .nav-btn, .close-btn, .theme-btn {
-  touch-action: manipulation;
-}
-
-[data-theme="dark"] .bento-form textarea {
-  touch-action: manipulation;
-  color: var(--text-main);
-}
-
 [data-theme="dark"] .bento-form input:focus,
 [data-theme="dark"] .bento-form textarea:focus {
   background: #2d2d2d;
@@ -214,6 +204,7 @@ body {
   background-image: radial-gradient(var(--grid-dot) 1.5px, transparent 1.5px);
   background-size: 24px 24px;
   overflow: hidden; /* NIENTE PIU SCROLLING */
+  height: 100vh;
   height: 100dvh;
   width: 100%;
   line-height: 1.6;
@@ -252,10 +243,12 @@ h4 {
 
 /* 2. LAYOUT DESKTOP (Vero OS, Container Centrato) */
 .bento-grid {
+  --terminal-top: min(max(590px, calc(50% + 160px)), max(65%, calc(100% - 270px)));
   position: relative;
   width: 100%;
   max-width: 1640px; /* Misura intermedia "perfetta" */
   margin: 0 auto;
+  height: 100vh;
   height: 100dvh;
   display: block;
   padding: 0 20px;
@@ -302,11 +295,13 @@ h4 {
 }
 .profile-tile {
   padding: 30px;
-  justify-content: center;
+  justify-content: safe center;
   -ms-overflow-style: none;
   scrollbar-width: none;
   width: 380px; /* Grandezza intermedia */
-  height: 820px; /* Altezza intermedia */
+  height: 820px;
+  max-height: calc(100% - 40px);
+  min-height: 0;
   top: 50%;
   transform: translateY(-50%);
   left: 20px;
@@ -428,13 +423,15 @@ h4 {
   padding: 0;
   height: auto; /* Si adatta automaticamente alla quantità di testo! */
   max-width: calc(100vw - 80px) !important; /* MAI più larga dello schermo */
-  max-height: calc(100dvh - 80px) !important; /* MAI più alta dello schermo */
+  top: var(--drag-top, var(--window-top));
+  max-height: calc(100% - var(--drag-top, var(--window-top)) - 20px);
+  min-height: min(200px, calc(100% - var(--drag-top, var(--window-top)) - 20px));
 }
 
 /* GRIGLIA DI PARTENZA ORDINATA E CENTRATA (Altezza: 820px) */
 /* Colonna 2: About Me (Grandezza intermedia) */
 #aboutme {
-  top: max(20px, calc(50dvh - 410px));
+  --window-top: max(20px, calc(50% - 410px));
   left: 420px;
   width: 750px;
   height: 820px;
@@ -442,13 +439,14 @@ h4 {
 
 /* Colonna 3: Contacts e Terminale (Spazio proporzionato) */
 #contacts {
-  top: max(20px, calc(50dvh - 410px));
+  --window-top: max(20px, calc(50% - 410px));
   left: calc(100% - 450px);
   width: 430px;
-  height: 550px;
+  height: min(550px, calc(var(--terminal-top) - var(--window-top) - 20px));
+  min-height: 0;
 }
 #terminal-box {
-  top: max(590px, calc(50dvh + 160px));
+  --window-top: var(--terminal-top);
   left: calc(100% - 450px);
   width: 430px;
   height: 250px;
@@ -456,17 +454,17 @@ h4 {
 
 /* Le altre finestre mantengono un leggero sfalsamento se aperte dopo */
 #projects {
-  top: max(60px, calc(50dvh - 335px));
+  --window-top: max(60px, calc(50% - 335px));
   left: 450px;
   width: 800px;
 }
 #passions {
-  top: max(100px, calc(50dvh - 295px));
+  --window-top: max(100px, calc(50% - 295px));
   left: 480px;
   width: 750px;
 }
 #rickrolled {
-  top: max(140px, calc(50dvh - 255px));
+  --window-top: max(140px, calc(50% - 255px));
   left: 430px;
   width: 550px;
   height: auto;
@@ -474,6 +472,7 @@ h4 {
 }
 
 .title-bar {
+  flex-shrink: 0;
   background-color: var(--border-color);
   color: #fff;
   padding: 8px 15px;
@@ -633,39 +632,36 @@ h4 {
   font-weight: 600;
   font-family: var(--font-title);
 }
-.bento-form input,
-a, button, input, textarea, .nav-btn, .close-btn, .theme-btn {
-  touch-action: manipulation;
-}
-
+.bento-form input:not([type="hidden"]),
 .bento-form textarea {
-  touch-action: manipulation;
   width: 100%;
-  font-size: 16px !important;
+  min-width: 0;
+  font-size: 16px;
   padding: 12px;
   border: 2px solid var(--border-color);
   border-radius: 8px;
   background: var(--bg-color);
+  color: var(--text-main);
   font-family: var(--font-body);
-  outline: none;
-}
-a, button, input, textarea, .nav-btn, .close-btn, .theme-btn {
-  touch-action: manipulation;
 }
 
 .bento-form textarea {
-  touch-action: manipulation;
-  resize: none !important; /* Impedisce di deformare il form internamente, usa il resize della finestra! */
+  resize: vertical;
 }
+
+.form-status:not(:empty) {
+  margin-top: 12px;
+}
+
 .bento-form input:focus,
 .bento-form textarea:focus {
-  background: #fff;
+  background: var(--window-bg);
   border-color: var(--border-color);
   box-shadow: 4px 4px 0px var(--accent-color);
 }
 .submit-btn {
   background: var(--border-color);
-  color: #fff;
+  color: var(--bg-color);
   border: 2px solid var(--border-color);
   padding: 12px;
   border-radius: 8px;
@@ -676,13 +672,17 @@ a, button, input, textarea, .nav-btn, .close-btn, .theme-btn {
   box-shadow: 4px 4px 0px var(--accent-color);
   transition: all 0.1s;
 }
+.submit-btn:disabled {
+  cursor: wait;
+}
+
 @media (hover: hover) {
-  .submit-btn:hover {
+  .submit-btn:not(:disabled):hover {
     transform: translate(2px, 2px);
     box-shadow: 2px 2px 0px var(--accent-color);
   }
 }
-.submit-btn:active {
+.submit-btn:not(:disabled):active {
   transform: translate(4px, 4px);
   box-shadow: 0px 0px 0px var(--accent-color);
 }
@@ -841,6 +841,9 @@ a, button, input, textarea, .nav-btn, .close-btn, .theme-btn {
     height: auto;
     padding: 20px;
   }
+  .profile-tile {
+    max-height: none;
+  }
   .bento-item {
     position: static !important; /* Su mobile non fluttuano, stanno in colonna */
     transform: none !important;
@@ -875,7 +878,18 @@ a, button, input, textarea, .nav-btn, .close-btn, .theme-btn {
   z-index: 1000000 !important;
 }
 
+.terminal-fallback {
+  padding: 16px;
+  color: #ddd;
+}
+
 @media screen and (max-width: 1200px) {
+  .contact-form-focused .clippy,
+  .contact-form-focused .clippy-balloon {
+    visibility: hidden !important;
+    pointer-events: none;
+  }
+
   #terminal-box {
     min-height: 400px !important;
     height: 400px !important;
@@ -893,7 +907,7 @@ a, button, input, textarea, .nav-btn, .close-btn, .theme-btn {
     width: 24vw;
     left: 2vw;
     padding: 20px;
-    height: 90dvh;
+    height: 90%;
     top: 50%;
     transform: translateY(-50%);
   }
@@ -922,40 +936,39 @@ a, button, input, textarea, .nav-btn, .close-btn, .theme-btn {
   #aboutme {
     left: 28vw;
     width: 42vw;
-    height: 90dvh;
-    top: 5dvh;
+    height: 90%;
+    --window-top: 5%;
   }
   #contacts {
     left: calc(100% - 28vw);
     width: 26vw;
-    height: 62dvh;
-    top: 5dvh;
+    height: 62%;
+    --window-top: 5%;
   }
   #terminal-box {
     left: calc(100% - 28vw);
     width: 26vw;
-    height: 23dvh;
-    top: auto;
-    bottom: 5dvh;
+    height: 23%;
+    --window-top: 72%;
   }
   #projects {
     left: 30vw;
     width: 40vw;
-    height: 80dvh;
-    top: 10dvh;
+    height: 80%;
+    --window-top: 10%;
   }
   #passions {
     left: 32vw;
     width: 38vw;
-    height: 80dvh;
-    top: 10dvh;
+    height: 80%;
+    --window-top: 10%;
   }
   #rickrolled {
     left: 30vw;
     width: 40vw;
     height: auto;
     aspect-ratio: 4 / 3;
-    top: 20dvh;
+    --window-top: 20%;
   }
 
   .grid-2-col {
